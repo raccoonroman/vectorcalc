@@ -290,7 +290,6 @@
                 <label class="calc__form-label" for="service">Послуга</label>
               </li>
             </ul>
-            {totalPrice}
           </fieldset>
 
           {#if service.name}
