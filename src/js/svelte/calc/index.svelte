@@ -13,12 +13,12 @@
   };
 
   onMount(async () => {
-		const responce = await fetch('/calc.json');
+		const responce = await fetch('calc.json');
     data.services = await responce.json();
   });
 
   onMount(async () => {
-		const responce = await fetch('/calc-printing-surface.json');
+		const responce = await fetch('calc-printing-surface.json');
     data.printingSurfaces = await responce.json();
   });
 
