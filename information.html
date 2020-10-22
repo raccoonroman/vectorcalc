@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Information</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5cccb6">
+<meta name="msapplication-TileColor" content="#5cccb6">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+
+<header class="header" data-sticky="">
+  <div class="header__container container">
+    <nav class="header__nav">
+      <div class="header__nav-wrapper">
+        <a class="header__nav-back" href="index.html">
+          <svg><use href="img/sprite.svg#arrow-right"></use></svg>
+        </a>
+        <a class="header__logo" href="index.html">
+          <svg width="162" height="37">
+            <use href="img/sprite.svg#logo"></use>
+          </svg>
+        </a>
+        <a href="tel:+380673038490" class="header__nav-tel">
+          <svg><use href="img/sprite.svg#tel2"></use></svg>
+        </a>
+        <!-- <button class="header__hamburger" aria-label="Відкрити / закрити меню"><span></span></button> -->
+      </div>
+      <ul class="header__nav-list">
+        <li class="header__nav-item">
+          <a href="index.html">Головна</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="about-us.html">Про нас</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="our-works.html">Наші роботи</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="information.html">Інфомація</a>
+        </li>
+        <li class="header__nav-item">
+          <a href="contacts.html">Контакти</a>
+        </li>
+        <li class="header__nav-item header__nav-item--btn">
+          <button type="button" data-open-popup="contact-form">Зворотній звязок</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main>
+  <section class="information">
+  <div class="container">
+    <ul class="information__tab-list" data-tab-list="information">
+      <li class="information__tab-item">
+        <a class="information__tab active" href="#delivery-payment" data-tab="">доставка та оплата</a>
+      </li>
+      <li class="information__tab-item">
+        <a class="information__tab" href="#recommendations" data-tab="">рекомендації</a>
+      </li>
+    </ul>
+  </div>
+  <ul id="information" class="information__content-list">
+    <li id="recommendations" class="information__content-item" data-tab-panel="">
+      <section class="hero hero--information">
+  <svg class="hero__bg-rect" width="1672" height="1142">
+    <use href="img/sprite.svg#rect-1"></use>
+  </svg>
+  <div class="container">
+    <div class="hero__rows">
+      <div class="hero__col hero__col--text">
+        <h2 class="hero__title">Технічні вимоги для широкоформатного друку</h2>
+        <p class="hero__text">Растрові файли:</p>
+        <p class="hero__text">Tiff — CMYK 8 біт, без шарів (всі зображення повинно бути зведено в одному шарі Background), без додаткових альфа-каналів (Channels), без шляхів (Paths)</p>
+        <p class="hero__text">Векторні файли не є готовими до друку і в роботу приймаються тільки після додаткової підготовки за окрему оплату. Якщо Ви зробили макет в CorelDRAW, Adobe Illustrator або в будь-якій іншій векторній програмі, експортуйте його в формат TIFF (CMYK);</p>
+      </div>
+      <div class="hero__col hero__col--img">
+        <svg class="hero__rect" width="270" height="130" data-rellax="" data-rellax-speed="-6">
+          <use href="img/sprite.svg#dotted-rectangle"></use>
+        </svg>
+        <svg class="hero__arrow" width="86" height="154" data-rellax="" data-rellax-speed="-2">
+          <use href="img/sprite.svg#double-arrow-to-bottom"></use>
+        </svg>
+        <svg class="hero__shape" width="438" height="446">
+          <use href="img/sprite.svg#hero-shape"></use>
+        </svg>
+        <div class="hero__img">
+          <picture>
+            <source media="(max-width: 1023px)" srcset="img/info-mobile.png, img/info-mobile@2x.png 2x">
+            <img src="img/info.png" srcset="img/info@2x.png 2x" alt="">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <div class="container">
+        <div class="information__slider-container swiper-container">
+          <ul class="information__slider-list swiper-wrapper">
+            <li class="information__slider-item swiper-slide">
+              <article class="recommendation">
+                <svg class="recommendation__icon" width="48" height="48">
+                  <use href="img/sprite.svg#size"></use>
+                </svg>
+                <h3 class="recommendation__title">Рекомендації по вибору розширення друку:</h3>
+                <ul class="recommendation__list">
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>360 dpi</b> — для зображень, що використовуються на вулиці і переглядаються з відстані більше 3-5 м
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>720 dpi</b> — для зображень, що використовуються в приміщеннях і на вулиці, що переглядаються з відстані менше 1,5-2 м, що містять текстові елементи менше 30 мм
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Інтер'єрний друк 1440 dpi</b> — для зображень, що використовуються в приміщеннях, що переглядаються з відстані менше 1,5 м і містять текстові елементи менше 10 мм
+                  </li>
+                </ul>
+              </article>
+            </li>
+            <li class="information__slider-item swiper-slide">
+              <article class="recommendation">
+                <svg class="recommendation__icon" width="48" height="48">
+                  <use href="img/sprite.svg#color"></use>
+                </svg>
+                <h3 class="recommendation__title">Рекомендовані налаштування «Color Settings» у программі Photoshop:</h3>
+                <ul class="recommendation__list recommendation__list--two-cols">
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Ink Colors:</b><br> Toyo Inks (Coated)
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Total Ink Limit:</b><br> 300%
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Dot Gain:</b><br> 8%
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Black ink Limit:</b><br> 100%
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Separation type:</b><br> GCR
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Чорний колір:</b><br> (C50; M50; Y50; K100)
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Black Generation:</b><br> Medium
+                  </li>
+                </ul>
+              </article>
+            </li>
+            <li class="information__slider-item swiper-slide">
+              <article class="recommendation">
+                <svg class="recommendation__icon" width="48" height="48">
+                  <use href="img/sprite.svg#search"></use>
+                </svg>
+                <h3 class="recommendation__title">Супровідна інформація при відправці файлів.</h3>
+                <ul class="recommendation__list recommendation__list--two-cols">
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Назва файлу</b>
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Розширення друку</b>
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Кількість</b>
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Точні розміри</b>
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Матеріал</b>
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Додаткові вимоги</b><br> (припуск фону, поля і т.п.)
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Яка потрібна післядрукарська обробка</b>
+                  </li>
+                </ul>
+              </article>
+            </li>
+            <li class="information__slider-item swiper-slide">
+              <article class="recommendation">
+                <svg class="recommendation__icon" width="48" height="48">
+                  <use href="img/sprite.svg#screen"></use>
+                </svg>
+                <h3 class="recommendation__title">Розширення растрових файлів:</h3>
+                <ul class="recommendation__list">
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Для друку з розширенням 360 dpi</b> — 35-50 dpi. Для зображень 3х6 м і більше, досить 35 dpi, при розмірі файлу не більше 100 Mb
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Для друку з роздільною здатністю 720 dpi</b> — 70-100 dpi. (Для зображень, що складаються тільки з фотографій —  70 dpi,  для зображень, що містять текстові елементи — 100 dpi, при розмірі файлу не більше 200 Mb)
+                  </li>
+                  <li class="recommendation__item">
+                    <svg><use href="img/sprite.svg#list-arrow"></use></svg>
+                    <b>Для інтер'єрного друку з роздільною здатністю 1440 dpi</b> — 100-150 dpi. (Для зображень, що складаються тільки з фотографій — 100 dpi, для зображень, що містять текстові елементи — 150 dpi, при розмірі файлу не більше 400 Mb
+                  </li>
+                </ul>
+              </article>
+            </li>
+          </ul>
+          <div class="information__slider-nav">
+            <div class="swiper-button-prev">
+              назад
+              <svg width="9" height="16">
+                <use href="img/sprite.svg#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="swiper-button-next">
+              далі
+              <svg width="9" height="16">
+                <use href="img/sprite.svg#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+      </div>
+      <svg class="information__slider-rect" width="130" height="60">
+        <use href="img/sprite.svg#dotted-rect-small"></use>
+      </svg>
+    </li>
+    <li id="delivery-payment" class="information__content-item" data-tab-panel="">
+      <svg class="information__bg-rect" width="1672" height="1142">
+        <use href="img/sprite.svg#rect-1"></use>
+      </svg>
+      <div class="container">
+        <h2 class="information__title">Доставка та оплата</h2>
+        <svg class="information__rect" width="130" height="60" data-rellax="" data-rellax-speed="1">
+          <use href="img/sprite.svg#dotted-rect-small"></use>
+        </svg>
+        <svg class="information__rect" width="130" height="60" data-rellax="" data-rellax-speed="-3">
+          <use href="img/sprite.svg#dotted-rect-small"></use>
+        </svg>
+        <ul class="information__delivery-payment-list">
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">Самовивіз</h3>
+              <p class="delivery-payment__text">Самовивіз здійснюється <br>
+                Пн по ПТ з 9:00 до 18:00 з нашої виробничої площадки:</p>
+              <p class="delivery-payment__text">м. Вінниця, вул.Гонти, 30</p>
+              <img src="img/delivery-1.png" srcset="img/delivery-1@2x.png 2x" alt="">
+            </article>
+          </li>
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">До адресата</h3>
+              <p class="delivery-payment__text">Організуємо доставку за вказаною адресою; <br>
+                Доставляємо продукцію за допомогою великих транспортних компаній. В цьому випадку вартість доставки буде залежати від габаритів, загальної ваги і віддаленості регіону.</p>
+              <img src="img/delivery-2.png" srcset="img/delivery-2@2x.png 2x" alt="">
+            </article>
+          </li>
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">Доставка на будь-яке відділення по Україні</h3>
+              <p class="delivery-payment__text">Доставка оплачується отримувачем при отриманні; Замовлення відправляються доставкою «Нова Пошта». У середньому, доставка займає 1-3 дні.</p>
+              <img src="img/delivery-3.png" srcset="img/delivery-3@2x.png 2x" alt="">
+              <div class="delivery-payment__info">
+                <button type="button" class="delivery-payment__info-btn">!</button>
+                <div class="delivery-payment__info-text">
+                  <p>Важливо! Після надходження на відділення посилка зберігається до 30 днів, за зберігання із 8-го календарного дня нараховується доплата, потім вона повертається назад.</p>
+                </div>
+              </div>
+            </article>
+          </li>
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">Оплата на карту Приват Банку</h3>
+              <p class="delivery-payment__text">Після підтвердження замовлення на друк, вам на електронну пошту буде відправлено лист з реквізитами для оплати і номером карти, на який ви можете зробити переказ.</p>
+              <img src="img/payment-1.png" srcset="img/payment-1@2x.png 2x" alt="">
+              <div class="delivery-payment__info">
+                <button type="button" class="delivery-payment__info-btn">!</button>
+                <div class="delivery-payment__info-text">
+                  <p>Важливо! Банки і платіжні системи можуть стягувати комісію за переказ, що може призвести до неповної оплати замовлення і затримки його обробки.</p>
+                </div>
+              </div>
+            </article>
+          </li>
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">Оплата готівкою при отриманні</h3>
+              <p class="delivery-payment__text">Оплатити замовлення, можна готівкою при самовивозі
+                з нашої виробничої площадки, якщо сума замовлення не більше 200 грн.</p>
+              <img src="img/payment-2.png" srcset="img/payment-2@2x.png 2x" alt="">
+            </article>
+          </li>
+          <li class="information__delivery-payment-item">
+            <article class="delivery-payment">
+              <svg class="delivery-payment__icon" width="390" height="390">
+                <use href="img/sprite.svg#advertising-icon-2"></use>
+              </svg>
+              <h3 class="delivery-payment__title">Безготівковий розрахунок</h3>
+              <p class="delivery-payment__text">Юридичні особи, фізичні особи-підприємці і будь-хто може оплатити замовлення за безготівковим переказом на наш банківський рахунок.</p>
+              <img src="img/payment-3.png" srcset="img/payment-3@2x.png 2x" alt="">
+              <div class="delivery-payment__info">
+                <button type="button" class="delivery-payment__info-btn">!</button>
+                <div class="delivery-payment__info-text">
+                  <p>Після надходження коштів замовлення буде готове до відправки або самовивозу разом з комплектом документів (оригіналом рахунки і двома видатковими накладними).</p>
+                  <p>Забрати готове замовлення можна за дорученням або з печаткою вашого підприємства, ФОП.</p>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+
+  <section class="other-services">
+  <svg class="other-services__bg-rect" width="1672" height="1142">
+    <use href="img/sprite.svg#rect-1"></use>
+  </svg>
+  <div class="container">
+    <svg class="other-services__rect" width="270" height="130">
+      <use href="img/sprite.svg#dotted-rectangle"></use>
+    </svg>
+    <svg class="other-services__rect" width="270" height="130">
+      <use href="img/sprite.svg#dotted-rectangle"></use>
+    </svg>
+    <p class="other-services__title">Інші послуги</p>
+    <ul class="other-services__list">
+      <li class="other-services__item" data-aos="zoom-in-left">
+        <article class="service service--printing">
+          <a class="service__link" href="printing.html">
+            <span class="visually-hidden">широкоформатний друк</span>
+            <picture>
+              <!-- <source media="(max-width: 767px)" srcset="img/printing-image-mobile.png, img/printing-image-mobile@2x.png 2x"> -->
+              <img class="service__img" src="img/printing-image.png" srcset="img/printing-image@2x.png 2x" alt="">
+            </picture>
+            <svg class="service__text" width="245" height="87">
+              <use href="img/sprite.svg#printing-text"></use>
+            </svg>
+            <svg class="service__icon service__icon--1" width="80" height="80">
+              <use href="img/sprite.svg#star"></use>
+            </svg>
+            <svg class="service__icon service__icon--2" width="40" height="40">
+              <use href="img/sprite.svg#printing-icon-2"></use>
+            </svg>
+          </a>
+        </article>
+      </li>
+      <li class="other-services__item" data-aos="zoom-in-right">
+        <article class="service service--design">
+          <a class="service__link" href="design.html">
+            <span class="visually-hidden">дизайн логотипів та макетів</span>
+            <picture>
+              <!-- <source media="(max-width: 767px)" srcset="img/design-image-mobile.png, img/design-image-mobile@2x.png 2x"> -->
+              <img class="service__img" src="img/design-image.png" srcset="img/design-image@2x.png 2x" alt="">
+            </picture>
+            <svg class="service__text" width="218" height="87">
+              <use href="img/sprite.svg#design-text"></use>
+            </svg>
+            <svg class="service__icon service__icon--1" width="64" height="64">
+              <use href="img/sprite.svg#design-icon-1"></use>
+            </svg>
+            <svg class="service__icon service__icon--2" width="32" height="33">
+              <use href="img/sprite.svg#design-icon-2"></use>
+            </svg>
+          </a>
+        </article>
+      </li>
+      <li class="other-services__item" data-aos="zoom-in-left">
+        <article class="service service--advertising">
+          <a class="service__link" href="advertising.html">
+            <span class="visually-hidden">зовнішня реклама</span>
+            <picture>
+              <!-- <source media="(max-width: 767px)" srcset="img/advertising-image-mobile.png, img/advertising-image-mobile@2x.png 2x"> -->
+              <img class="service__img" src="img/ads-image.png" srcset="img/ads-image@2x.png 2x" alt="">
+            </picture>
+            <svg class="service__text" width="206" height="57">
+              <use href="img/sprite.svg#advertising-text"></use>
+            </svg>
+            <svg class="service__icon service__icon--1" width="40" height="40">
+              <use href="img/sprite.svg#advertising-icon-1"></use>
+            </svg>
+            <svg class="service__icon service__icon--2" width="69" height="69">
+              <use href="img/sprite.svg#advertising-icon-2"></use>
+            </svg>
+          </a>
+        </article>
+      </li>
+      <li class="other-services__item" data-aos="zoom-in-right">
+        <button class="other-services__contacts" type="button" data-open-popup="contact-form">
+          <svg width="39" height="39">
+            <use href="img/sprite.svg#tel"></use>
+          </svg>
+          <span>Звязатися з нами</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__row">
+      <div class="footer__col">
+        <div class="footer__widget">
+          <a class="footer__logo" href="index.html">
+            <svg width="187" height="43">
+              <use href="img/sprite.svg#logo"></use>
+            </svg>
+          </a>
+          <p class="footer__copyright">All rights reserved <br> 2020 © Vector</p>
+          <p>Made by <a class="footer__agency" href="#!">dedey.digital</a></p>
+        </div>
+      </div>
+      <div class="footer__col">
+        <div class="footer__widget">
+          <h3 class="footer__widget-title">Навігація сайту</h3>
+          <ul class="footer__nav-list">
+            <li class="footer__nav-item">
+              <a href="index.html">головна</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="information.html">інфомація</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="about-us.html">про нас</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="contacts.html">контакти</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="our-works.html">наші роботи</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__col">
+        <div class="footer__widget">
+          <h3 class="footer__widget-title">контакти</h3>
+          <p class="footer__popup"><a href="#!" data-open-popup="contact-form">зворотній звязок</a></p>
+          <p><a href="tel:+380673038490">+38 (067) 303 84 90</a></p>
+          <p><a href="mailto:example@gmail.com">example@gmail.com</a></p>
+          <p><a href="https://goo.gl/maps/caMpgAWShaXw24y17" target="_blank" rel="noreferrer noopener">м. Вінниця, вул. Пирогова 110</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="tapbar">
+  <nav class="tapbar__nav">
+    <ul class="tapbar__nav-list">
+      <li class="tapbar__nav-item">
+        <a href="index.html" class="tapbar__link">
+          <svg class="tapbar__icon" width="19" height="20">
+            <use href="img/sprite.svg#home"></use>
+          </svg>
+          Головна
+        </a>
+      </li>
+      <li class="tapbar__nav-item">
+        <a href="our-works.html" class="tapbar__link">
+          <svg class="tapbar__icon" width="20" height="20">
+            <use href="img/sprite.svg#cases"></use>
+          </svg>
+          Кейси
+        </a>
+      </li>
+      <li class="tapbar__nav-item">
+        <a href="calculator.html" class="tapbar__link">
+          <svg class="tapbar__icon" width="18" height="20">
+            <use href="img/sprite.svg#calc"></use>
+          </svg>
+          Калькулятор
+        </a>
+      </li>
+      <li class="tapbar__nav-item">
+        <button type="button" class="tapbar__link open-menu">
+          <svg class="tapbar__icon" width="22" height="6">
+            <use href="img/sprite.svg#more"></use>
+          </svg>
+          Додатково
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+<div class="popup popup--hidden" data-popup="contact-form">
+  <div class="popup__box" data-popup-box="">
+    <svg class="contact-form__icon contact-form__icon--1">
+      <use href="img/sprite.svg#star"></use>
+    </svg>
+    <svg class="contact-form__icon contact-form__icon--2" width="69" height="69">
+      <use href="img/sprite.svg#advertising-icon-2"></use>
+    </svg>
+    <form class="contact-form contact-form--in-popup">
+  <p class="contact-form__title">Зворотній звязок</p>
+  <ul class="contact-form__list">
+    <li class="contact-form__item">
+      <input class="contact-form__input" type="text" id="username" name="username" required="" placeholder="Ім'я">
+      <label class="visually-hidden" for="username">Ім'я</label>
+    </li>
+    <li class="contact-form__item">
+      <input class="contact-form__input" type="tel" id="usertel" name="usertel" required="" placeholder="Номер телефону">
+      <label class="visually-hidden" for="usertel">Номер телефону</label>
+    </li>
+  </ul>
+  <button class="contact-form__btn" type="submit" data-open-popup="form-success">Відправити</button>
+</form>
+
+    <!-- <include src="src/html/components/form-success.html"></include> -->
+    <button class="popup__close-btn" data-close-popup="" type="button">Close</button>
+  </div>
+</div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
