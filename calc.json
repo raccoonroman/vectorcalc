@@ -93,13 +93,13 @@
     ],
     "additionals": [
       {
-        "id": "printingUrgentProd24",
+        "id": "urgentProd24",
         "type": "toggle",
         "label": "Терміновий друк <br> <small>24 год</small>",
         "price": 14
       },
       {
-        "id": "printingUrgentProd4",
+        "id": "urgentProd4",
         "type": "toggle",
         "label": "Терміновий друк <br> <small>4 год</small>",
         "price": 24
@@ -241,7 +241,7 @@
     "name": "Об’ємні букви",
     "params": [
       {
-        "id": "lettersHeight",
+        "id": "height",
         "type": "number",
         "label": "Висота букви (см)",
         "placeholder": 0,
