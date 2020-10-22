@@ -1,0 +1,127 @@
+.info-box {
+  position: relative;
+  margin-bottom: 2px;
+  padding: 18px 32px;
+  padding-right: 60px;
+  display: flex;
+  overflow: hidden;
+  transition-property: all !important;
+  transition-duration: 0.4s;
+
+  @include mobile {
+    padding: 5px 16px;
+    display: block;
+    min-height: 244px;
+  }
+
+  &.active {
+    padding-bottom: 70px;
+
+    @include mobile {
+      padding-bottom: 56px;
+    }
+  }
+
+  &--violet {
+    color: $white;
+    background-color: $violet;
+  }
+
+  &--gray {
+    background-color: $gallery;
+  }
+
+  p {
+    margin: 0;
+    margin-bottom: 16px;
+    max-width: 510px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__text {
+    width: 70%;
+    padding: 27px 0 14px;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  &__img {
+    padding-left: 20px;
+    width: 30%;
+    align-self: center;
+    text-align: right;
+
+    @include mobile {
+      display: none;
+    }
+
+    img {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  &__more-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+    right: 60px;
+    z-index: 1;
+
+    @include mobile {
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &__more-btn {
+    border: 0;
+    padding: 12px 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 70%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.7;
+    color: $turquoise;
+    cursor: pointer;
+    transition: color 0.25s;
+
+    @include mobile {
+      padding: 26px 16px 25px;
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    svg {
+      margin-left: 8px;
+      fill: $turquoise;
+      transform: rotate(90deg);
+      transition: fill 0.25s, transform 0.25s;
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
+    &.active svg {
+      transform: rotate(90deg) rotateY(180deg);
+    }
+  }
+
+  &--violet &__more-btn {
+    background-color: $violet;
+  }
+
+  &--gray &__more-btn {
+    background-color: $gallery;
+  }
+}

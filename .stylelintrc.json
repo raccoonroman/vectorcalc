@@ -1,0 +1,12 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
+  "ignoreFiles": ["src/sass/normalize.scss", "build/css/*.css"],
+  "rules": {
+    "selector-class-pattern": null,
+    "order/properties-alphabetical-order": null,
+    "no-descending-specificity": null,
+    "selector-no-qualifying-type": null,
+    "color-hex-case": "upper",
+    "max-nesting-depth": 3
+  }
+}

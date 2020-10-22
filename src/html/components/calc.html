@@ -1,0 +1,178 @@
+<section class="calc">
+  <svg class="calc__bg-rect --r1" width="1672" height="1142">
+    <use href="img/sprite.svg#rect-1"></use>
+  </svg>
+  <svg class="calc__bg-rect --r2" width="1672" height="1142">
+    <use href="img/sprite.svg#rect-1"></use>
+  </svg>
+  <div class="container">
+    <div class="calc__row">
+      <div class="calc__col --left">
+        <h1 class="calc__heading">Калькулятор послуг</h1>
+        <a class="calc__back" href="index.html">
+          <svg width="9" height="16">
+            <use href="img/sprite.svg#arrow-right"></use>
+          </svg>
+          назад
+        </a>
+        <form class="calc__form" name="calc" action="https://echo.htmlacademy.ru" method="post" target="_blank">
+          <fieldset class="calc__fieldset">
+            <legend class="calc__legend">виберіть послугу</legend>
+            <ul class="calc__form-items">
+              <li class="calc__form-item">
+                <label class="calc__form-label" for="service-type">Послуга</label>
+                <select class="calc__select" name="service-type" id="service-type">
+                  <option value="Стенд">Стенд</option>
+                  <option value="Об’ємні букви">Об’ємні букви</option>
+                  <option value="Широкоформатний друк">Широкоформатний друк</option>
+                  <option value="Номерна табличка">Номерна табличка</option>
+                  <option value="Лайтбокс">Лайтбокс</option>
+                  <option value="Штендер">Штендер</option>
+                </select>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="calc__fieldset">
+            <legend class="calc__legend">виберіть параметри послуги</legend>
+            <ul class="calc__form-items">
+              <li class="calc__form-item --no-border">
+                <label class="calc__form-label" for="service-height">
+                  <span class="visually-hidden">Висота</span>
+                  <input class="calc__text-input" type="number" name="service-height" id="service-height" placeholder="Висота (см)">
+                </label>
+                <label class="calc__form-label" for="service-width">
+                  <span class="visually-hidden">Ширина</span>
+                  <input class="calc__text-input" type="number" name="service-width" id="service-width" placeholder="Ширина (см)">
+                </label>
+              </li>
+              <li class="calc__form-item">
+                <label class="calc__form-label" for="print-surface">На чому друкаємо?</label>
+                <select class="calc__select" name="print-surface" id="print-surface">
+                  <option value="На папері">На папері</option>
+                  <option value="На банері">На банері</option>
+                  <option value="На плівці">На плівці</option>
+                  <option value="На банерній сітці">На банерній сітці</option>
+                  <option value="На тентованій тканині">На тентованій тканині</option>
+                  <option value="На шпалерах">На шпалерах</option>
+                </select>
+              </li>
+              <li class="calc__form-item">
+                <label class="calc__form-label" for="material">Матеріал</label>
+                <select class="calc__select" name="material" id="material">
+                  <option value="Citi папір">Citi папір</option>
+                  <option value="Blueback 6x3">Blueback 6x3</option>
+                  <option value="Банер литий">Банер литий</option>
+                  <option value="Банер ламінованій">Банер ламінованій</option>
+                  <option value="Банерна сітка">Банерна сітка</option>
+                  <option value="Тентована тканина">Тентована тканина</option>
+                  <option value="Шпалери">Шпалери</option>
+                  <option value="Solexprint гл/мат">Solexprint гл/мат</option>
+                  <option value="One Way Vision">One Way Vision</option>
+                </select>
+              </li>
+              <li class="calc__form-item">
+                <label class="calc__form-label" for="print-quality">Якість друку</label>
+                <select class="calc__select" name="print-quality" id="print-quality">
+                  <option value="300 dpi">300 dpi</option>
+                  <option value="720 dpi">720 dpi</option>
+                  <option value="1080 dpi">1080 dpi</option>
+                  <option value="1440 dpi">1440 dpi</option>
+                </select>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="calc__fieldset">
+            <legend class="calc__legend">Додаткові послуги</legend>
+            <ul class="calc__form-items --fsz14">
+              <li class="calc__form-item">
+                <input class="calc__form-input-toggle visually-hidden" type="checkbox" name="urgent-printing" value="24 hours" id="urgent-printing-24">
+                <label class="calc__form-label --w100" for="urgent-printing-24">
+                  Терміновий друк <br> <small>24 год</small>
+                  <span class="calc__form-toggle"></span>
+                </label>
+              </li>
+              <li class="calc__form-item">
+                <input class="calc__form-input-toggle visually-hidden" type="checkbox" name="urgent-printing" value="4 hours" id="urgent-printing-4">
+                <label class="calc__form-label --w100" for="urgent-printing-4">
+                  Терміновий друк <br> <small>4 год</small>
+                  <span class="calc__form-toggle"></span>
+                </label>
+              </li>
+              <li class="calc__form-item">
+                <input class="calc__form-input-checkbox visually-hidden" type="checkbox" name="plotter-cutting" id="plotter-cutting">
+                <label class="calc__form-label --w100" for="plotter-cutting">
+                  Плотерна різка надрукованого зображення
+                  <span class="calc__form-checkbox">
+                    <svg><use href="img/sprite.svg#check"></use></svg>
+                  </span>
+                </label>
+                <button class="calc__form-info" type="button" data-open-popup="info-plotter-cutting">
+                  <svg width="22" height="22"><use href="img/sprite.svg#i"></use></svg>
+                </button>
+              </li>
+              <li class="calc__form-item">
+                <input class="calc__form-input-checkbox visually-hidden" type="checkbox" name="edge-cutting" id="edge-cutting">
+                <label class="calc__form-label --w100" for="edge-cutting">
+                  Різка плівки в край
+                  <span class="calc__form-checkbox">
+                    <svg><use href="img/sprite.svg#check"></use></svg>
+                  </span>
+                </label>
+                <button class="calc__form-info" type="button" data-open-popup="info-edge-cutting">
+                  <svg width="22" height="22"><use href="img/sprite.svg#i"></use></svg>
+                </button>
+              </li>
+              <li class="calc__form-item">
+                <input class="calc__form-input-checkbox visually-hidden" type="checkbox" name="img-lamination" id="img-lamination">
+                <label class="calc__form-label --w100" for="img-lamination">
+                  Ламінування зображення
+                  <span class="calc__form-checkbox">
+                    <svg><use href="img/sprite.svg#check"></use></svg>
+                  </span>
+                </label>
+                <button class="calc__form-info" type="button" data-open-popup="info-img-lamination">
+                  <svg width="22" height="22"><use href="img/sprite.svg#i"></use></svg>
+                </button>
+              </li>
+            </ul>
+          </fieldset>
+        </form>
+      </div>
+      <div class="calc__col --right">
+        <div class="calc__poster">
+          <svg class="calc__poster-dots" width="551" height="430">
+            <use href="img/sprite.svg#calc-dots"></use>
+          </svg>
+          <article class="service service--active service--calc">
+            <a class="service__link">
+              <span class="visually-hidden">зовнішня реклама</span>
+              <picture>
+                <!-- <source media="(max-width: 767px)" srcset="img/calc-mobile.png, img/calc-mobile@2x.png 2x"> -->
+                <source media="(max-width: 1023px)" srcset="img/calc-tablet.png, img/calc-tablet@2x.png 2x">
+                <img class="service__img" src="img/calc-desktop.png" srcset="img/calc-desktop@2x.png 2x" alt="">
+              </picture>
+              <svg class="service__text" width="479" height="113">
+                <use href="img/sprite.svg#calc-text"></use>
+              </svg>
+              <svg class="service__icon service__icon--1" width="54" height="54">
+                <use href="img/sprite.svg#design-icon-2"></use>
+              </svg>
+              <svg class="service__icon service__icon--2" width="67" height="67">
+                <use href="img/sprite.svg#printing-icon-2"></use>
+              </svg>
+            </a>
+          </article>
+        </div>
+        <div class="calc__summary">
+          <div class="calc__summary-price">
+            <p class="calc__summary-price-label">Орієнтовна вартість</p>
+            <p class="calc__summary-price-value">500 грн</p>
+          </div>
+          <button type="button" class="calc__summary-btn" data-open-popup="calc-check">Уточнити вартість</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

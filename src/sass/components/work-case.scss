@@ -1,0 +1,174 @@
+.work-case {
+  position: relative;
+  overflow: hidden;
+  background-color: $alabaster;
+  box-shadow: 4px 4px 40px rgba($black, 0.05);
+
+  &__logo {
+    min-height: 296px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    transition: opacity 0.3s, transform 0.3s;
+
+    @include mobile {
+      flex-direction: column;
+      padding-bottom: 40px;
+      min-height: 288px;
+    }
+
+    img {
+      @include mobile {
+        margin-top: auto;
+        padding-top: 20px;
+      }
+    }
+  }
+
+  &.active &__logo,
+  &:hover &__logo {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 48px 32px;
+    color: $white;
+    background-color: $gray;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.15);
+    opacity: 0;
+    overflow-y: scroll;
+    transition: opacity 0.3s, transform 0.3s;
+
+    @include mobile {
+      padding: 40px 16px;
+    }
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: $turquoise;
+      border-radius: 3px;
+    }
+  }
+
+  &.active &__overlay,
+  &:hover &__overlay {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &--1 &__overlay {
+    background-image: url('../img/case-1-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-1-bg@2x.jpg');
+    }
+  }
+
+  &--2 &__overlay {
+    background-image: url('../img/case-2-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-2-bg@2x.jpg');
+    }
+  }
+
+  &--3 &__overlay {
+    background-image: url('../img/case-3-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-3-bg@2x.jpg');
+    }
+  }
+
+  &--4 &__overlay {
+    background-image: url('../img/case-4-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-4-bg@2x.jpg');
+    }
+  }
+
+  &--5 &__overlay {
+    background-image: url('../img/case-5-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-5-bg@2x.jpg');
+    }
+  }
+
+  &--6 &__overlay {
+    background-image: url('../img/case-6-bg.jpg');
+
+    @include retina {
+      background-image: url('../img/case-6-bg@2x.jpg');
+    }
+  }
+
+  &__list {
+    @include list-reset;
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 24px;
+
+    @include mobile {
+      font-size: 14px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    svg {
+      fill: $turquoise;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 5px;
+      left: 0;
+    }
+  }
+
+  &__more-link {
+    display: none;
+    margin: auto 0 0;
+    padding-top: 20px;
+    font-size: 20px;
+    line-height: 1.2;
+    align-items: center;
+    color: $turquoise;
+
+    @include mobile {
+      display: inline-flex;
+    }
+
+    svg {
+      margin-left: 16px;
+      fill: $turquoise;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

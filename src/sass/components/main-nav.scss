@@ -1,0 +1,50 @@
+.main-nav {
+  min-height: 100vh;
+  padding-top: 80px;
+  position: relative;
+
+  @include mobile {
+    min-height: 0;
+    height: 100%;
+    padding-bottom: 63px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  &__list {
+    @include list-reset;
+
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    @include mobile {
+      height: 100%;
+      margin: 0 -4px;
+      padding: 4px 0;
+      overflow: visible;
+    }
+  }
+
+  &__item {
+    position: relative;
+    width: 50%;
+    height: calc(50vh - 40px);
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    @include tablet {
+      min-height: 0;
+    }
+
+    @include mobile {
+      height: auto;
+      min-height: 200px;
+      padding: 4px;
+      overflow: visible;
+    }
+  }
+}

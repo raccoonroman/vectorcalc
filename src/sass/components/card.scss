@@ -1,0 +1,91 @@
+.card {
+  display: flex;
+  height: 100%;
+  min-height: 128px;
+  background-color: $alabaster;
+
+  &__link {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 275px;
+    padding: 60px 24px 24px;
+    color: rgba($main-black, 0.6);
+    transition: background-color 0.3s, color 0.3s;
+
+    @include mobile {
+      min-height: 255px;
+    }
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $turquoise;
+    }
+  }
+
+  .swiper-slide-active.cards-grid__item &__link {
+    color: $white;
+    background-color: $turquoise;
+  }
+
+  &__counter {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: $font-montserrat;
+    line-height: 1.7;
+    color: $gray2;
+    transition: color 0.3s;
+  }
+
+  &__link:hover &__counter,
+  &__link:focus &__counter,
+  .swiper-slide-active.cards-grid__item &__counter {
+    color: $white;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 20px;
+    height: 20px;
+    fill: $black;
+    transition: fill 0.3s;
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 16px;
+    font-family: $font-montserrat;
+    font-weight: 700;
+    font-size: 20px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.7;
+
+    b {
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
+
+  &__link:hover &__arrow,
+  &__link:focus &__arrow,
+  .swiper-slide-active.cards-grid__item &__arrow {
+    fill: $violet;
+  }
+
+  &__logo {
+    margin: auto;
+    opacity: 0.2;
+  }
+}

@@ -1,0 +1,121 @@
+.contact-form {
+  max-width: 320px;
+  padding-top: 20px;
+
+  @include mobile {
+    max-width: 360px;
+    padding-top: 36px;
+  }
+
+  &__icon {
+    fill: #DEF5F0;
+    position: absolute;
+
+    &--1 {
+      width: 230px;
+      height: 230px;
+      top: 0;
+      left: 0;
+      transform: translate(-37%, -37%);
+
+      @include mobile {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    &--2 {
+      width: 195px;
+      height: 195px;
+      right: 0;
+      bottom: 0;
+      transform: translate(24%, 24%);
+
+      @include mobile {
+        width: 136px;
+        height: 136px;
+      }
+    }
+  }
+
+  &--in-popup {
+    margin: 0 auto;
+    max-width: 264px;
+    padding-top: 64px;
+  }
+
+  &__title {
+    position: relative;
+    margin: 0;
+    font-weight: 700;
+    margin-bottom: 32px;
+
+    @include mobile {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &--in-popup &__title {
+    font-size: 24px;
+    text-align: center;
+
+    @include mobile {
+      font-size: 20px;
+      margin-bottom: 28px;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  &__input {
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    border: 0;
+    padding: 8px 0;
+    line-height: 1.5;
+    background-color: transparent;
+    border-bottom: 1px solid rgba($black, 0.1);
+    border-radius: 0;
+    transition: border 0.25s;
+
+    &:focus {
+      outline: none;
+      border-bottom-color: $turquoise;
+    }
+
+    &::placeholder {
+      color: inherit;
+      opacity: 0.4;
+    }
+  }
+
+  &__btn {
+    @include btn;
+
+    display: flex;
+    width: 100%;
+    margin: 40px 0 80px;
+    position: relative;
+
+    @include mobile {
+      margin-top: 32px;
+      margin-bottom: 56px;
+    }
+  }
+
+  // &--in-popup &__btn {
+  //   @include mobile {
+  //     margin-top: 32px;
+  //     margin-bottom: 40px;
+  //   }
+  // }
+}

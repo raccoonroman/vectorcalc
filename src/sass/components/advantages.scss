@@ -1,0 +1,119 @@
+.advantages {
+  position: relative;
+  padding: 60px 0;
+
+  @include mobile {
+    padding: 28px 0;
+  }
+
+  &__bg-rect {
+    display: none;
+
+    @include mobile {
+      display: block;
+      position: absolute;
+      max-width: 504px;
+      max-height: 344px;
+      left: 50%;
+      top: 16px;
+    }
+  }
+
+  &__rect {
+    display: none;
+
+    @include mobile {
+      display: block;
+      position: absolute;
+      top: 56px;
+      left: calc(50% + 20px);
+    }
+  }
+
+  &__title {
+    @include title-with-divider;
+
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  &__item {
+    min-height: 296px;
+    padding: 32px 40px;
+    background-color: $alabaster;
+    box-shadow: 4px 4px 40px rgba($black, 0.05);
+
+    @include mobile {
+      min-height: 288px;
+      padding: 24px;
+      margin-bottom: 2px;
+    }
+
+    svg {
+      display: block;
+      margin-bottom: 24px;
+      width: 48px;
+      height: 48px;
+
+      @include mobile {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  &__item-title {
+    margin: 0;
+    margin-bottom: 16px;
+    font-family: $font-montserrat;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &__item-text {
+    margin: 0;
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  &__icon {
+    position: absolute;
+    fill: rgba($turquoise, 0.5);
+
+    @include mobile {
+      display: none;
+    }
+
+    &--1 {
+      top: 55%;
+      right: -74px;
+    }
+
+    &--2 {
+      top: calc(100% - 28px);
+      left: -100px;
+    }
+  }
+}

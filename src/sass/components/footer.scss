@@ -1,0 +1,159 @@
+.footer {
+  position: relative;
+  padding: 45px 0 60px;
+  line-height: 1.2;
+  color: rgba($white, 0.5);
+  background-color: $main-black;
+  background-image: url('../img/bg-footer.png');
+
+  @include retina {
+    background-image: url('../img/bg-footer@2x.png');
+    background-size: 1500px auto;
+  }
+
+  @include mobile {
+    padding: 38px 0 60px;
+  }
+
+  a {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  a[data-open-popup] {
+    text-decoration: underline;
+    color: $malibu;
+
+    @include mobile {
+      @include btn;
+
+      width: 100%;
+      text-decoration: none;
+    }
+  }
+
+  &__row {
+    display: flex;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  &__col {
+    width: 30%;
+    padding-right: 5px;
+
+    @include mobile {
+      width: 100%;
+      padding-right: 0;
+    }
+
+    &:nth-child(1) {
+      padding-right: 40px;
+
+      @include mobile {
+        text-align: center;
+        padding-right: 0;
+      }
+    }
+
+    &:nth-child(3) {
+      @include mobile {
+        text-align: center;
+      }
+    }
+
+    &:last-child {
+      margin-left: auto;
+      padding-right: 0;
+    }
+  }
+
+  &__widget {
+    padding: 10px 0;
+  }
+
+  &__logo {
+    svg {
+      fill: $white;
+      transition: fill 0.25s;
+    }
+
+    &:hover svg {
+      fill: $turquoise;
+    }
+  }
+
+  &__widget-title {
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 16px;
+    padding: 12px 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba($white, 0.1);
+
+    @include mobile {
+      text-align: center;
+    }
+  }
+
+  &__nav-list {
+    @include list-reset;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+
+    @include mobile {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__nav-item {
+    padding-bottom: 16px;
+    padding-right: 8px;
+
+    @include mobile {
+      width: 50%;
+      padding: 0 16px 16px;
+
+      &:nth-child(odd) {
+        text-align: right;
+      }
+
+      &:nth-child(even) {
+        text-align: left;
+      }
+    }
+  }
+
+  &__copyright {
+    margin: 40px 0;
+  }
+
+  &__agency {
+    text-decoration: underline;
+  }
+
+  &__col:nth-child(3) &__widget {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin: 8px 0;
+      }
+
+      .footer__popup {
+        order: 1;
+        margin: 16px 0;
+      }
+    }
+  }
+}

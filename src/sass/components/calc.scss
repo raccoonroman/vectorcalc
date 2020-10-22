@@ -1,0 +1,547 @@
+.calc {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(to right, $turquoise calc(50% - 128px), $white calc(50% - 128px));
+
+  @include mobile {
+    background-image: none;
+  }
+
+  &__container {
+    height: 100%;
+  }
+
+  &__bg-rect {
+    position: absolute;
+    top: -568px;
+    left: calc(50% + 213px);
+    transform: rotateX(180deg);
+
+    @include mobile {
+      left: auto;
+      right: 50%;
+      top: -50px;
+      width: 504px;
+      height: 344px;
+      transform: none;
+    }
+
+    &.--r2 {
+      display: none;
+
+      @include mobile {
+        display: block;
+        top: 320px;
+        right: auto;
+        left: 50%;
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    height: 100%;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  &__col {
+    position: relative;
+
+    &.--left {
+      width: calc(50% - 128px);
+      padding-top: 26px;
+      padding-bottom: 60px;
+      padding-right: 60px;
+      color: $white;
+      background-color: $turquoise;
+
+      @include tablet {
+        width: 50%;
+        padding-right: 30px;
+        padding-bottom: 30px;
+      }
+
+      @include mobile {
+        width: 100%;
+        padding-right: 0;
+        color: $main-black;
+        background-color: transparent;
+      }
+    }
+
+    &.--right {
+      padding-left: 30px;
+      padding-bottom: 60px;
+      width: calc(50% + 128px);
+
+      @include tablet {
+        width: 50%;
+        padding-bottom: 30px;
+      }
+
+      @include mobile {
+        padding-left: 0;
+        padding-bottom: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__heading {
+    display: none;
+
+    @include mobile {
+      @include title-with-divider;
+
+      display: block;
+    }
+  }
+
+  &__back {
+    color: $white;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 36px;
+    z-index: 5;
+    font-size: 16px;
+
+    @include tablet {
+      display: none;
+    }
+
+    svg {
+      margin-right: 9px;
+      fill: $white;
+      transform: rotate(180deg);
+      transition: transform 0.25s;
+    }
+  }
+
+  &__back:hover svg,
+  &__back:focus svg {
+    transform: rotate(180deg) translateX(4px);
+  }
+
+  &__form {
+    counter-reset: legends;
+    position: relative;
+    z-index: 4;
+  }
+
+  &__fieldset {
+    border: 0;
+    margin: 0;
+    margin-top: 32px;
+    padding: 0;
+  }
+
+  &__legend {
+    position: relative;
+    padding-left: 22px;
+    padding-bottom: 8px;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    @include mobile {
+      font-size: 13px;
+      color: rgba($black, 0.5);
+    }
+
+    &::before {
+      counter-increment: legends;
+      content: counter(legends);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__form-items {
+    @include list-reset;
+
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.2;
+    color: $main-black;
+    background-color: $white;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.04),
+      0 0 2px rgba(0, 0, 0, 0.06),
+      0 0 1px rgba(0, 0, 0, 0.04);
+
+    &.--fsz14 {
+      font-size: 14px;
+    }
+  }
+
+  &__form-item {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    min-height: 56px;
+    padding-bottom: 1px;
+
+    @include mobile {
+      min-height: 44px;
+    }
+
+    &.half {
+      width: 50%;
+    }
+
+    &:last-child,
+    &.half {
+      padding-bottom: 0;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background-color: rgba($turquoise, 0.2);
+      z-index: 1;
+    }
+
+    &:last-child::after,
+    &.half::after {
+      display: none;
+    }
+  }
+
+  &__form-label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    padding: 8px 16px;
+    outline-offset: -1px;
+
+    &.checkbox,
+    &.toggle {
+      width: 100%;
+      padding-right: 90px;
+    }
+
+    small {
+      font-size: 12px;
+      line-height: 1.2;
+      color: $gray;
+    }
+  }
+
+  &__form-input-toggle:focus + &__form-label,
+  &__form-input-checkbox:focus + &__form-label {
+    outline: 1px solid $violet;
+    outline-offset: -1px;
+  }
+
+  &__form-input-checkbox:checked + &__form-label,
+  &__form-input-checkbox + &__form-label:hover {
+    background-color: #EFFAF8;
+  }
+
+  &__size-input,
+  &__text-input {
+    appearance: textfield;
+    width: 50%;
+    padding-left: 16px;
+    border: 0;
+    font-size: 16px;
+    box-shadow: none;
+    outline-offset: -1px;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: 1px solid $violet;
+    }
+
+    &:invalid {
+      outline: 1px solid $pink;
+    }
+
+    &::placeholder {
+      color: rgba($main-black, 0.5);
+      opacity: 1;
+    }
+  }
+
+  &__form-item.half &__size-input {
+    width: 100%;
+    padding-top: 12px;
+    padding-left: 16px;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &__form-item.half &__form-label {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-top: 0;
+    padding-bottom: 28px;
+    font-size: 10px;
+    color: transparent;
+
+    @include mobile {
+      padding-bottom: 24px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background-color: $turquoise;
+    }
+  }
+
+  &__form-item.half &__size-input:focus + &__form-label {
+    &::after {
+      background-color: $violet;
+    }
+  }
+
+  &__form-item.half &__size-input:invalid {
+    outline: none;
+  }
+
+  &__form-item.half &__size-input:invalid + &__form-label {
+    &::after {
+      background-color: $pink;
+    }
+  }
+
+  &__form-item.half &__size-input:focus + &__form-label,
+  &__form-item.half &__size-input.--filled + &__form-label,
+  &__form-item.half &__size-input:invalid + &__form-label {
+    color: rgba($main-black, 0.5);
+  }
+
+  &__select {
+    appearance: none;
+    padding-right: 36px;
+    padding-left: 16px;
+    border: 0;
+    outline: 0;
+    color: rgba($main-black, 0.5);
+    background-image: url('../img/arrow-select.svg');
+    background-repeat: no-repeat;
+    background-position: center right 16px;
+    background-color: transparent;
+    width: 50%;
+    text-overflow: ellipsis;
+    font-size: 16px;
+
+    &.--w100 {
+      width: 100%;
+    }
+
+    &:focus {
+      outline: 1px solid $violet;
+      outline-offset: -1px;
+    }
+  }
+
+  &__form-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 32px;
+    border-radius: 36px;
+    background-color: #EFFAF8;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    transition-delay: 0.1s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 28px;
+      height: 28px;
+      background-color: $white;
+      border: 1px solid rgba($black, 0.04);
+      box-shadow:
+        0 3px 8px rgba($black, 0.15),
+        0 1px 1px rgba($black, 0.16),
+        0 3px 1px rgba($black, 0.1);
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+  }
+
+  &__form-input-toggle:checked + &__form-label &__form-toggle {
+    background-color: $turquoise;
+
+    &::before {
+      transform: translateX(20px);
+    }
+  }
+
+  &__form-info {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    cursor: pointer;
+
+    svg {
+      fill: $turquoise;
+      transition: fill 0.2s;
+    }
+
+    &:focus {
+      outline: none;
+
+      svg {
+        fill: $violet;
+      }
+    }
+  }
+
+  &__form-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 55px;
+    transform: translateY(-50%);
+    background-color: $white;
+    border: 1px solid $turquoise;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+  }
+
+  &__form-input-checkbox:checked + &__form-label &__form-checkbox {
+    background-image: url('../img/check.svg');
+  }
+
+  /* poster */
+  &__poster {
+    position: relative;
+    padding: 128px 0 36px;
+
+    @include tablet {
+      padding-top: 36px;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__poster-dots {
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include tablet {
+      top: 32px;
+    }
+  }
+
+  &__summary {
+    max-width: 358px;
+    margin: 0 auto;
+    position: relative;
+
+    @include mobile {
+      max-width: 100%;
+      position: fixed;
+      bottom: 63px;
+      left: 0;
+      right: 0;
+      z-index: 7;
+      background-color: $white;
+      box-shadow: 0 -4px 10px rgba($black, 0.2);
+    }
+  }
+
+  &__summary-price {
+    @include mobile {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px 11px;
+    }
+  }
+
+  &__summary-price-label {
+    margin: 0;
+    font-size: 24px;
+    color: #999;
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+  &__summary-price-value {
+    margin: 0;
+    margin-bottom: 26px;
+    font-size: 82px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $main-black;
+
+    @include tablet {
+      font-size: 64px;
+    }
+
+    @include mobile {
+      margin-bottom: 0;
+      font-size: 16px;
+    }
+  }
+
+  &__summary-btn {
+    @include btn;
+
+    display: flex;
+    width: 100%;
+    font-size: 22px;
+  }
+}

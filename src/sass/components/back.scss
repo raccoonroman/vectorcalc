@@ -1,0 +1,24 @@
+.back {
+  padding: 18px 0;
+
+  &__link {
+    color: $turquoise;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    font-size: 16px;
+  }
+
+  svg {
+    margin-right: 9px;
+    fill: $turquoise;
+    transform: rotate(180deg);
+    transition: transform 0.25s;
+  }
+
+  &__link:hover svg,
+  &__link:focus svg {
+    transform: rotate(180deg) translateX(4px);
+  }
+}

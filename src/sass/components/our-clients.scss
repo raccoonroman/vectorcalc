@@ -1,0 +1,97 @@
+.our-clients {
+  position: relative;
+  padding-top: 60px;
+
+  @include mobile {
+    padding-top: 40px;
+  }
+
+  &__bg-rect {
+    position: absolute;
+    right: -630px;
+    top: -48px;
+
+    @include mobile {
+      width: 504px;
+      height: 344px;
+      right: auto;
+      top: -12px;
+      left: 50%;
+    }
+  }
+
+  &__rect {
+    display: none;
+
+    @include mobile {
+      display: block;
+      position: absolute;
+      left: calc(50% + 20px);
+      top: 56px;
+    }
+  }
+
+  &__heading {
+    @include title-with-divider;
+
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+
+    position: relative;
+    z-index: 3;
+    padding-bottom: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      padding-bottom: 28px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    min-height: 275px;
+    background-color: $alabaster;
+    box-shadow: 4px 4px 40px rgba($black, 0.05);
+
+    @include mobile {
+      min-height: 144px;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    fill: rgba($turquoise, 0.5);
+
+    @include mobile {
+      display: none;
+    }
+
+    &--1 {
+      top: 25%;
+      right: -74px;
+    }
+
+    &--2 {
+      top: calc(100% - 88px);
+      left: -100px;
+    }
+  }
+}

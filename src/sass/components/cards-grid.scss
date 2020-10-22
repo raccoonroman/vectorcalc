@@ -1,0 +1,145 @@
+.cards-grid {
+  position: relative;
+  padding: 60px 0;
+
+  @include mobile {
+    padding: 28px 0;
+  }
+
+  &__bg-rect {
+    position: absolute;
+    top: 54px;
+    right: -600px;
+
+    @include mobile {
+      max-width: 504px;
+      max-height: 344px;
+      right: auto;
+      left: 50%;
+      top: 44px;
+    }
+  }
+
+  &__title {
+    @include title-with-divider;
+
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__wrapper {
+    overflow: visible !important;
+  }
+
+  &__list {
+    @include list-reset;
+
+    position: relative;
+    z-index: 3 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      display: flex !important;
+      margin-bottom: 24px;
+      padding-right: 15px;
+    }
+  }
+
+  &__item {
+    height: auto !important;
+    box-shadow: 4px 4px 40px rgba($black, 0.05);
+
+    @include mobile {
+      &.stub {
+        display: none;
+      }
+    }
+  }
+
+  &__rect {
+    position: absolute;
+
+    &:first-of-type {
+      left: -24px;
+      top: 110%;
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &:last-of-type {
+      right: -24px;
+      top: 0;
+
+      @include mobile {
+        right: auto;
+        top: 84px;
+        left: calc(50% + 20px);
+      }
+    }
+  }
+
+  &__slider-nav {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+
+    @include mobile {
+      display: flex;
+    }
+
+    .swiper-pagination {
+      position: static;
+      width: auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      font-size: 14px;
+
+      .swiper-pagination-current {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__slider-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba($turquoise, 0.1);
+    border: 1px solid rgba($turquoise, 0.1);
+    cursor: pointer;
+
+    svg {
+      fill: $turquoise;
+      transition: transform 0.2s;
+    }
+
+    &.prev svg {
+      transform: rotate(180deg);
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      border-color: $turquoise;
+    }
+  }
+}

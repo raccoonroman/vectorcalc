@@ -1,0 +1,40 @@
+.form-success {
+  margin: 0 auto;
+  max-width: 264px;
+  padding-top: 60px;
+  padding-bottom: 80px;
+  text-align: center;
+
+  @include mobile {
+    padding: 40px 0;
+  }
+
+  &__title {
+    position: relative;
+    margin: 10px 0 14px;
+    font-weight: 700;
+    font-size: 24px;
+
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+
+  &__text {
+    position: relative;
+    margin: 14px 0 40px;
+
+    @include mobile {
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__btn {
+    @include btn;
+
+    display: flex;
+    width: 100%;
+    position: relative;
+  }
+}

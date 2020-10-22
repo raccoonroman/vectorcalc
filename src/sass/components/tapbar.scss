@@ -1,0 +1,75 @@
+.tapbar {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    min-width: 320px;
+    background-color: $white;
+    z-index: 24;
+    box-shadow: 0 0 16px rgba(#EDEDED, 0.5);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+
+  &__nav-list {
+    @include list-reset;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0 7px;
+  }
+
+  &__nav-item {
+    padding: 0 15px;
+    text-align: center;
+    color: #999;
+
+    &.active {
+      color: #FF647C;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    padding-top: 25px;
+    font-size: 12px;
+    color: inherit;
+    line-height: inherit;
+    transition: color 0.25s;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    stroke: #999;
+    fill: #999;
+    transition: fill 0.25s, stroke 0.25s;
+  }
+
+  &__link.open-menu &__icon {
+    stroke-width: 3px;
+  }
+
+  &__nav-item.active &__icon {
+    stroke: #FF647C;
+    fill: #FF647C;
+  }
+}

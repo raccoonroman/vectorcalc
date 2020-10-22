@@ -1,0 +1,168 @@
+.equipment {
+  position: relative;
+  padding: 60px 0 20px;
+
+  @include mobile {
+    padding: 28px 0 0;
+  }
+
+  &__bg-rect {
+    position: absolute;
+
+    @include mobile {
+      display: none;
+    }
+
+    &:nth-of-type(1) {
+      top: 400px;
+      left: -600px;
+    }
+
+    &:nth-of-type(2) {
+      top: -780px;
+      right: -600px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16%;
+
+    @include mobile {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__col {
+    width: 50%;
+    padding-bottom: 40px;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    @include title-with-divider;
+
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 3;
+
+    @include mobile {
+      margin-bottom: 16px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__img {
+    position: relative;
+    perspective: 1000px;
+
+    img {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__row:nth-child(odd) &__img {
+    text-align: right;
+    padding-left: 30px;
+
+    @include mobile {
+      text-align: center;
+      padding-left: 0;
+    }
+
+    // img {
+    //   clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+    // }
+
+    // .equipment__rect {
+    //   position: absolute;
+    //   top: -128px;
+    //   right: -26px;
+
+    //   @include mobile {
+    //     top: -8px;
+    //     right: -78px;
+    //   }
+    // }
+  }
+
+  &__row:nth-child(even) &__img {
+    text-align: left;
+    padding-right: 30px;
+
+    @include mobile {
+      text-align: center;
+      padding-right: 0;
+    }
+
+    // img {
+    //   clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    // }
+
+    // .equipment__rect {
+    //   position: absolute;
+    //   top: 256px;
+    //   left: -68px;
+
+    //   @include mobile {
+    //     top: -24px;
+    //     left: -220px;
+    //   }
+    // }
+  }
+
+  &__list {
+    @include list-reset;
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 32px;
+    padding-left: 32px;
+    line-height: 1.7;
+
+    @include mobile {
+      margin-bottom: 24px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    svg {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      fill: $turquoise;
+    }
+  }
+}

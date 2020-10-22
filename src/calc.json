@@ -1,0 +1,637 @@
+[
+  {
+    "id": "printing",
+    "name": "Широкоформатний друк",
+    "params": [
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (см)",
+        "placeholder": "Висота (см)",
+        "min": 10,
+        "max": 1000
+      },
+      {
+        "id": "width",
+        "width": "half",
+        "type": "number",
+        "label": "Ширина (см)",
+        "placeholder": "Ширина (см)",
+        "min": 10,
+        "max": 1000
+      },
+      {
+        "id": "printingSurface",
+        "type": "select",
+        "label": "На чому друкуємо?",
+        "value": "",
+        "options": [
+          {
+            "id": "printingSurfaceBanner",
+            "name": "на банері",
+            "price": 73
+          },
+          {
+            "id": "printingSurfacePaper",
+            "name": "на папері",
+            "price": 23
+          },
+          {
+            "id": "printingSurfaceBannerGrid",
+            "name": "на банерній сітці",
+            "price": 20
+          },
+          {
+            "id": "printingSurfaceTent",
+            "name": "на тентованій тканині",
+            "price": 30
+          },
+          {
+            "id": "printingSurfaceFilm",
+            "name": "на плівці",
+            "price": 40
+          },
+          {
+            "id": "printingSurfaceWallpaper",
+            "name": "на шпалерах",
+            "price": 50
+          }
+        ]
+      },
+      {
+        "id": "printingMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": []
+      },
+      {
+        "id": "printingQuality",
+        "type": "select",
+        "label": "Якість друку",
+        "value": "",
+        "options": [
+          {
+            "name": "360 dpi",
+            "price": 0
+          },
+          {
+            "name": "720 dpi",
+            "price": 15
+          },
+          {
+            "name": "1080 dpi",
+            "price": 44
+          },
+          {
+            "name": "1440 dpi",
+            "price": 67
+          }
+        ]
+      }
+    ],
+    "additionals": [
+      {
+        "id": "printingUrgentProd24",
+        "type": "toggle",
+        "label": "Терміновий друк <br> <small>24 год</small>",
+        "price": 14
+      },
+      {
+        "id": "printingUrgentProd4",
+        "type": "toggle",
+        "label": "Терміновий друк <br> <small>4 год</small>",
+        "price": 24
+      },
+      {
+        "id": "printingPlotterCutting",
+        "type": "checkbox",
+        "label": "Плотерна різка надрукованого зображення",
+        "price": 1,
+        "info": "Високоточна технологія, яка дозволяє вирізати навіть самі складні фігурні зображення на будь-якому матеріалі. Зазвичай для плоттерної порізки (або по-іншому - висікання) використовують самоклеючий папір, термопереносну плівку, вініл. Висічені таким способом зображення наносяться на різноманітні поверхні - починаючи від тканини і закінчуючи склом та металом."
+      },
+      {
+        "id": "printingEdgeCutting",
+        "type": "checkbox",
+        "label": "Різка плівки в край",
+        "price": 2,
+        "info": "Lorem ipsum, dolor sit amet"
+      },
+      {
+        "id": "printingImgLamination",
+        "type": "checkbox",
+        "label": "Ламінування зображення",
+        "price": 3,
+        "info": "Ламінування чи ламінація — процес нанесення на поліграфічну продукцію прозорої плівки. Основним завданням та метою ламінування є захист готової друкованої продукції від впливу зовнішніх факторів та значне продовження терміну її експлуатації. Ламінування захищає як від вологи та пилу, так і механічного впливу."
+      }
+    ],
+    "conditionalParams": [
+      {
+        "id": "luvers",
+        "paramFor": "printingSurfaceBanner",
+        "type": "select",
+        "label": "Люверсовка",
+        "value": "",
+        "options": [
+          {
+            "name": "Без люверсовки",
+            "price": 0
+          },
+          {
+            "name": "По периметру",
+            "price": 2
+          },
+          {
+            "name": "По міткам в макеті",
+            "price": 4
+          },
+          {
+            "name": "По краям",
+            "price": 6
+          },
+          {
+            "name": "По краям і середині",
+            "price": 8
+          },
+          {
+            "name": "Тільки верх",
+            "price": 10
+          },
+          {
+            "name": "Тільки низ",
+            "price": 12
+          },
+          {
+            "name": "Тільки низ",
+            "price": 14
+          },
+          {
+            "name": "Верх і низ",
+            "price": 16
+          },
+          {
+            "name": "Ліво і право",
+            "price": 18
+          }
+        ]
+      },
+      {
+        "id": "soldering",
+        "paramFor": "printingSurfaceBanner",
+        "type": "select",
+        "label": "Спайка підвороту",
+        "value": "",
+        "options": [
+          {
+            "name": "Без спайки",
+            "price": 0
+          },
+          {
+            "name": "По периметру",
+            "price": 24
+          }
+        ]
+      },
+      {
+        "id": "pipePocket",
+        "paramFor": "printingSurfaceBanner",
+        "type": "select",
+        "label": "Карман под трубу",
+        "value": "",
+        "options": [
+          {
+            "name": "Без карману",
+            "price": 0
+          },
+          {
+            "name": "Тільки зверху",
+            "price": 3
+          },
+          {
+            "name": "Тільки знизу",
+            "price": 3
+          },
+          {
+            "name": "Тільки зліва",
+            "price": 3
+          },
+          {
+            "name": "Тільки справа",
+            "price": 3
+          },
+          {
+            "name": "Верх і низ",
+            "price": 6
+          },
+          {
+            "name": "Ліво і право",
+            "price": 6
+          },
+          {
+            "name": "По периметру",
+            "price": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "letters",
+    "name": "Об’ємні букви",
+    "params": [
+      {
+        "id": "lettersHeight",
+        "type": "number",
+        "label": "Висота букви (см)",
+        "placeholder": 0,
+        "min": 10,
+        "max": 1000
+      },
+      {
+        "id": "lettersFontFamily",
+        "type": "select",
+        "label": "Шрифт",
+        "value": "",
+        "options": [
+          {
+            "name": "Roboto",
+            "price": 0
+          },
+          {
+            "name": "Open Sans",
+            "price": 7
+          },
+          {
+            "name": "Montserrat",
+            "price": 14
+          }
+        ]
+      },
+      {
+        "id": "lettersText",
+        "type": "text",
+        "label": "Текст вивіски",
+        "value": "",
+        "placeholder": "Слово чи літера"
+      },
+      {
+        "id": "letterMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": [
+          {
+            "name": "лице пвх, борт з пвх",
+            "price": 0
+          },
+          {
+            "name": "лице акрил, борт пвх",
+            "price": 17
+          },
+          {
+            "name": "лице акрил, борт акрил",
+            "price": 34
+          }
+        ]
+      },
+      {
+        "id": "lettersBackground",
+        "type": "select",
+        "label": "Підсвічування",
+        "value": "",
+        "options": [
+          {
+            "name": "без підсвічування",
+            "price": 0
+          },
+          {
+            "name": "лицьова світлова панель",
+            "price": 13
+          },
+          {
+            "name": "контуражна підсвітка",
+            "price": 26
+          }
+        ]
+      }
+    ],
+    "additionals": [
+      {
+        "id": "lettersUrgentProd24",
+        "type": "toggle",
+        "label": "Терміновий друк <br> <small>24 год</small>",
+        "price": 14
+      }
+    ]
+  },
+  {
+    "id": "lightbox",
+    "name": "Лайтбокс",
+    "price": 200,
+    "params": [
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (см)",
+        "placeholder": "Висота (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "width",
+        "width": "half",
+        "type": "number",
+        "label": "Ширина (см)",
+        "placeholder": "Ширина (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "lightboxMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": [
+          {
+            "name": "полікарбонатний",
+            "price": 0
+          },
+          {
+            "name": "банерний",
+            "price": 9
+          },
+          {
+            "name": "акриловий",
+            "price": 18
+          },
+          {
+            "name": "композитний",
+            "price": 27
+          }
+        ]
+      },
+      {
+        "id": "lightboxBackground",
+        "type": "select",
+        "label": "Підсвічування",
+        "value": "",
+        "options": [
+          {
+            "name": "лицьова світлова панель",
+            "price": 0
+          },
+          {
+            "name": "контуражна підсвітка",
+            "price": 23
+          }
+        ]
+      }
+    ],
+    "additionals": []
+  },
+  {
+    "id": "numberPlate",
+    "name": "Номерна табличка",
+    "price": 300,
+    "params": [
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (см)",
+        "placeholder": "Висота (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "width",
+        "width": "half",
+        "type": "number",
+        "label": "Ширина (см)",
+        "placeholder": "Ширина (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "numberPlateMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": [
+          {
+            "name": "ПВХ",
+            "price": 0
+          },
+          {
+            "name": "Композит",
+            "price": 11
+          },
+          {
+            "name": "Бокс",
+            "price": 22
+          }
+        ]
+      },
+      {
+        "id": "numberPlateBackground",
+        "type": "select",
+        "label": "Підсвічування",
+        "value": "",
+        "options": [
+          {
+            "name": "без підсвічування",
+            "price": 0
+          },
+          {
+            "name": "з підсвічуванням",
+            "price": 19
+          }
+        ]
+      }
+    ],
+    "additionals": []
+  },
+  {
+    "id": "stand",
+    "name": "Стенд",
+    "price": 400,
+    "params": [
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (см)",
+        "placeholder": "Висота (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "width",
+        "width": "half",
+        "type": "number",
+        "label": "Ширина (см)",
+        "placeholder": "Ширина (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "standMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": [
+          {
+            "name": "ПВХ",
+            "price": 0
+          },
+          {
+            "name": "Композит",
+            "price": 11
+          }
+        ]
+      },
+      {
+        "id": "standImplementation",
+        "type": "select",
+        "label": "Варіант виконання",
+        "value": "",
+        "options": [
+          {
+            "name": "на стіні",
+            "price": 0
+          },
+          {
+            "name": "на підлозі або стоячи на землі",
+            "price": 20
+          }
+        ]
+      },
+      {
+        "id": "standPockets",
+        "type": "number",
+        "label": "Кількість кишень",
+        "placeholder": "0",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "id": "standBackground",
+        "type": "select",
+        "label": "Фон основного поля стенду",
+        "value": "",
+        "options": [
+          {
+            "name": "природній колір і фактура основи",
+            "price": 0
+          },
+          {
+            "name": "біла чи кольорова плівка",
+            "price": 18
+          },
+          {
+            "name": "повнокольоровий друк високого розширення",
+            "price": 36
+          }
+        ]
+      }
+    ],
+    "additionals": []
+  },
+  {
+    "id": "stender",
+    "name": "Штендер",
+    "price": 100,
+    "params": [
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (см)",
+        "placeholder": "Висота (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "width",
+        "width": "half",
+        "type": "number",
+        "label": "Ширина (см)",
+        "placeholder": "Ширина (см)",
+        "min": 100,
+        "max": 1000
+      },
+      {
+        "id": "stenderType",
+        "type": "select",
+        "label": "Вид штендера",
+        "value": "",
+        "options": [
+          {
+            "name": "прямокутний",
+            "price": 0
+          },
+          {
+            "name": "арочний",
+            "price": 21
+          },
+          {
+            "name": "фігурний",
+            "price": 42
+          }
+        ]
+      },
+      {
+        "id": "stenderMaterial",
+        "type": "select",
+        "label": "Матеріал",
+        "value": "",
+        "options": [
+          {
+            "name": "ПВХ",
+            "price": 0
+          },
+          {
+            "name": "Композит",
+            "price": 11
+          }
+        ]
+      }
+    ],
+    "additionals": [
+      {
+        "id": "stenderSides",
+        "type": "select",
+        "label": "Сторони",
+        "value": "",
+        "options": [
+          {
+            "name": "Односторонній",
+            "price": 0
+          },
+          {
+            "name": "Двосторонній",
+            "price": 10
+          }
+        ]
+      },
+      {
+        "id": "stenderFlexible",
+        "type": "select",
+        "label": "Гнучкість",
+        "value": "",
+        "options": [
+          {
+            "name": "Розкривається",
+            "price": 0
+          },
+          {
+            "name": "Прямостоячий",
+            "price": 10
+          }
+        ]
+      }
+    ]
+  }
+]

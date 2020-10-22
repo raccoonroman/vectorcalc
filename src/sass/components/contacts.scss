@@ -1,0 +1,96 @@
+.contacts {
+  position: relative;
+  padding: 1px 0;
+
+  &__bg-rect {
+    display: none;
+
+    @include mobile {
+      display: block;
+      width: 504px;
+      height: 344px;
+      position: absolute;
+      top: -85px;
+      left: 50%;
+      transform: rotateX(180deg);
+    }
+  }
+
+  &__text-wrapper {
+    width: calc(50% - 100px);
+    padding-right: 30px;
+    padding-top: 120px;
+    padding-bottom: 24px;
+
+    @include mobile {
+      width: 100%;
+      padding-right: 0;
+      padding-top: 56px;
+      padding-bottom: 0;
+    }
+  }
+
+  &__iframe {
+    position: absolute;
+    left: calc(50% - 100px);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: rgba($turquoise, 0.1);
+
+    @include mobile {
+      position: static;
+      margin-bottom: 56px;
+    }
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      min-height: 400px;
+    }
+  }
+
+  &__heading {
+    @include title-with-divider;
+  }
+
+  &__title {
+    margin: 24px 0 4px;
+    font-weight: 700;
+
+    @include mobile {
+      margin-top: 32px;
+      font-size: 14px;
+    }
+
+    &:first-of-type {
+      margin-top: 32px;
+
+      @include mobile {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  &__text {
+    margin: 0;
+    margin-bottom: 4px;
+
+    @include mobile {
+      font-size: 14px;
+    }
+
+    a {
+      color: $turquoise;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}

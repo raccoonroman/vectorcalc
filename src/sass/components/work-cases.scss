@@ -1,0 +1,90 @@
+.work-cases {
+  position: relative;
+  padding: 120px 0 60px;
+
+  @include mobile {
+    padding-top: 56px;
+    padding-bottom: 28px;
+  }
+
+  &__bg-rect {
+    position: absolute;
+    top: -45%;
+    left: -600px;
+
+    @include mobile {
+      width: 504px;
+      height: 344px;
+      right: 50%;
+      left: auto;
+      top: -85px;
+    }
+  }
+
+  &__title {
+    @include title-with-divider;
+
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding-bottom: 60px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      display: block;
+      padding-bottom: 28px;
+    }
+  }
+
+  &__item {
+    @include mobile {
+      margin-bottom: 2px;
+    }
+  }
+
+  &__rect {
+    position: absolute;
+
+    @include mobile {
+      display: none;
+    }
+
+    &:first-of-type {
+      top: 59px;
+      right: -53px;
+    }
+
+    &:last-of-type {
+      bottom: 0;
+      left: -11px;
+    }
+  }
+
+  &__btn {
+    @include btn;
+
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    z-index: 4;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+}

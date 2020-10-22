@@ -1,0 +1,41 @@
+.page-404 {
+  background-color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  svg {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 64px;
+
+    @include mobile {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    margin-bottom: 64px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--mine-shaft);
+
+    @include mobile {
+      margin-bottom: 32px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+
+  &__home-link {
+    @include btn;
+
+    min-width: 262px;
+  }
+}

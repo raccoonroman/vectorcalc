@@ -1,0 +1,630 @@
+$home-transition: transform 0.5s;
+
+.service {
+  width: 100%;
+  height: 100%;
+
+  @include mobile {
+    box-shadow:
+      0 4px 4px rgba($black, 0.15),
+      0 16px 16px rgba($black, 0.04),
+      4px 4px 40px rgba($black, 0.21);
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    min-height: 296px;
+    height: 100%;
+    background-color: $alabaster;
+    transition: background-color 0.25s;
+
+    @include mobile {
+      min-height: 288px;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $turquoise;
+    }
+  }
+
+  &--active &__link {
+    background-color: transparent;
+  }
+
+  &--active.service--calc &__link {
+    min-height: 440px;
+  }
+
+  &--big &__link {
+    @include mobile {
+      min-height: 196px;
+    }
+  }
+
+  &--big.service--printing &__link {
+    background-color: $gallery;
+  }
+
+  &--big.service--calc &__link {
+    background-color: $seashell;
+
+    @include mobile {
+      background-color: $gallery;
+    }
+  }
+
+  &--big.service--design &__link,
+  &--big.service--advertising &__link {
+    background-color: $white;
+
+    @include mobile {
+      background-color: $gallery;
+    }
+  }
+
+  &--big.service--printing &__link,
+  &--big.service--design &__link,
+  &--big.service--advertising &__link,
+  &--big.service--calc &__link {
+    &:hover,
+    &:focus {
+      background-color: $turquoise;
+    }
+  }
+
+  &__img,
+  &__text {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--big &__img,
+  &--big &__text {
+    transition: $home-transition;
+  }
+
+  &--printing &__img,
+  &--printing &__text {
+    top: calc(50% + 10px);
+    left: calc(50% + 10px);
+  }
+
+  &--big.service--printing &__img,
+  &--active.service--printing &__img {
+    top: 50%;
+    left: 50%;
+  }
+
+  &--big.service--printing &__img {
+    @include tablet {
+      top: calc(50% + 10px);
+      left: calc(50% + 10px);
+    }
+
+    @include mobile {
+      top: calc(50% - 30px);
+      left: calc(50% + 5px);
+    }
+  }
+
+  &--active.service--printing &__img {
+    @include tablet {
+      top: calc(50% + 30px);
+      left: calc(50% + 10px);
+    }
+  }
+
+  &--big.service--printing &__text,
+  &--active.service--printing &__text {
+    top: calc(50% + 10px);
+    left: calc(50% + 10px);
+  }
+
+  &--big.service--printing &__text {
+    @include tablet {
+      width: 245px;
+      height: 87px;
+      top: calc(50% + 10px);
+      left: calc(50% + 10px);
+    }
+
+    @include mobile {
+      width: 136px;
+      height: 48px;
+      left: 50%;
+      top: calc(50% + 60px);
+    }
+  }
+
+  &--active.service--printing &__text {
+    @include tablet {
+      width: 245px;
+      height: 87px;
+      top: calc(50% - 10px);
+      left: calc(50% + 10px);
+    }
+  }
+
+  &--design &__img {
+    top: calc(50% + 3px);
+    left: calc(50% + 26px);
+  }
+
+  &--big.service--design &__img,
+  &--active.service--design &__img {
+    top: calc(50% - 7px);
+    left: calc(50% + 67px);
+  }
+
+  &--big.service--design &__img {
+    @include tablet {
+      top: calc(50% + 3px);
+      left: calc(50% + 26px);
+    }
+
+    @include mobile {
+      top: calc(50% - 37px);
+      left: calc(50% + 8px);
+    }
+  }
+
+  &--active.service--design &__img {
+    @include tablet {
+      top: calc(50% + 23px);
+      left: calc(50% + 26px);
+    }
+  }
+
+  &--design &__text {
+    top: calc(50% + 4px);
+    left: calc(50% - 14px);
+  }
+
+  &--big.service--design &__text,
+  &--active.service--design &__text {
+    top: calc(50% - 3px);
+    left: calc(50% - 13px);
+  }
+
+  &--big.service--design &__text {
+    @include tablet {
+      width: 218px;
+      height: 87px;
+      top: calc(50% + 4px);
+      left: calc(50% - 14px);
+    }
+
+    @include mobile {
+      width: 121px;
+      height: 48px;
+      left: calc(50% - 8px);
+      top: calc(50% + 60px);
+    }
+  }
+
+  &--active.service--design &__text {
+    @include tablet {
+      width: 218px;
+      height: 87px;
+      top: calc(50% - 16px);
+      left: calc(50% - 14px);
+    }
+  }
+
+  &--advertising &__img {
+    top: calc(50% + 28px);
+    left: calc(50% + 11px);
+  }
+
+  &--big.service--advertising &__img,
+  &--active.service--advertising &__img {
+    top: calc(50% + 24px);
+    left: 50%;
+  }
+
+  &--big.service--advertising &__img {
+    @include tablet {
+      top: calc(50% + 28px);
+      left: calc(50% + 11px);
+    }
+
+    @include mobile {
+      top: calc(50% - 30px);
+      left: 50%;
+    }
+  }
+
+  &--active.service--advertising &__img {
+    @include tablet {
+      top: calc(50% + 48px);
+      left: calc(50% + 11px);
+    }
+  }
+
+  &--advertising &__text {
+    top: calc(50% - 10px);
+    left: calc(50% - 2px);
+  }
+
+  &--big.service--advertising &__text,
+  &--active.service--advertising &__text {
+    top: calc(50% - 13px);
+    left: calc(50% - 25px);
+  }
+
+  &--big.service--advertising &__text {
+    @include tablet {
+      width: 206px;
+      height: 57px;
+      top: calc(50% - 10px);
+      left: calc(50% - 2px);
+    }
+
+    @include mobile {
+      width: 115px;
+      height: 32px;
+      top: calc(50% + 66px);
+      left: calc(50% - 10px);
+    }
+  }
+
+  &--active.service--advertising &__text {
+    @include tablet {
+      width: 206px;
+      height: 57px;
+      top: calc(50% - 30px);
+      left: calc(50% - 2px);
+    }
+  }
+
+  /* calc */
+  &--big.service--calc &__img,
+  &--active.service--calc &__img {
+    top: calc(50% - 2px);
+  }
+
+  &--big.service--calc &__img {
+    @include tablet {
+      top: calc(50% + 16px);
+    }
+
+    @include mobile {
+      top: calc(50% - 30px);
+    }
+  }
+
+  &--active.service--calc &__img {
+    @include tablet {
+      top: calc(50% + 36px);
+    }
+  }
+
+  &--big.service--calc &__text,
+  &--active.service--calc &__text {
+    top: calc(50% - 13px);
+    left: calc(50% + 8px);
+  }
+
+  &--big.service--calc &__text {
+    @include tablet {
+      width: 240px;
+      height: 57px;
+    }
+
+    @include mobile {
+      width: 136px;
+      height: 32px;
+      top: calc(50% + 66px);
+      left: 50%;
+    }
+  }
+
+  &--active.service--calc &__text {
+    @include tablet {
+      top: 50%;
+      width: 240px;
+      height: 57px;
+    }
+  }
+
+  /* end of calc */
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: $silver;
+    transition: fill 0.25s;
+  }
+
+  &--big &__icon {
+    transition: $home-transition, fill 0.5s;
+  }
+
+  &__link:hover &__icon,
+  &--active &__icon {
+    &--1 {
+      fill: $yellow;
+    }
+
+    &--2 {
+      fill: $pink;
+    }
+  }
+
+  &--printing &__icon {
+    &--1 {
+      top: calc(50% - 48px);
+      left: calc(50% - 106px);
+    }
+
+    &--2 {
+      top: calc(50% + 67px);
+      left: calc(50% + 125px);
+    }
+  }
+
+  &--big.service--printing &__icon,
+  &--active.service--printing &__icon {
+    &--1 {
+      top: calc(50% - 116px);
+      left: calc(50% - 230px);
+
+      @include tablet {
+        width: 67px;
+        height: 67px;
+        top: calc(50% - 48px);
+        left: calc(50% - 106px);
+      }
+    }
+
+    &--2 {
+      top: calc(50% + 116px);
+      left: calc(50% + 230px);
+
+      @include tablet {
+        width: 33px;
+        height: 33px;
+        top: calc(50% + 67px);
+        left: calc(50% + 125px);
+      }
+    }
+  }
+
+  &--big.service--printing &__icon {
+    &--1 {
+      @include mobile {
+        width: 40px;
+        height: 40px;
+        top: calc(50% - 60px);
+        left: calc(50% - 52px);
+      }
+    }
+
+    &--2 {
+      @include mobile {
+        width: 20px;
+        height: 20px;
+        top: calc(50% - 2px);
+        left: calc(50% + 63px);
+      }
+    }
+  }
+
+  &--design &__icon {
+    &--1 {
+      top: calc(50% - 50px);
+      left: calc(50% + 110px);
+    }
+
+    &--2 {
+      top: calc(50% + 50px);
+      left: calc(50% - 126px);
+    }
+  }
+
+  &--big.service--design &__icon,
+  &--active.service--design &__icon {
+    &--1 {
+      top: calc(50% - 116px);
+      left: calc(50% + 232px);
+
+      @include tablet {
+        width: 53px;
+        height: 53px;
+        top: calc(50% - 50px);
+        left: calc(50% + 110px);
+      }
+    }
+
+    &--2 {
+      top: calc(50% + 88px);
+      left: calc(50% - 235px);
+
+      @include tablet {
+        width: 27px;
+        height: 27px;
+        top: calc(50% + 50px);
+        left: calc(50% - 126px);
+      }
+    }
+  }
+
+  &--big.service--design &__icon {
+    &--1 {
+      @include mobile {
+        width: 32px;
+        height: 32px;
+        top: calc(50% - 66px);
+        left: calc(50% + 52px);
+      }
+    }
+
+    &--2 {
+      @include mobile {
+        width: 16px;
+        height: 16px;
+        top: calc(50% - 11px);
+        left: calc(50% - 26px);
+      }
+    }
+  }
+
+  &--advertising &__icon {
+    &--1 {
+      top: calc(50% - 71px);
+      left: calc(50% - 62px);
+    }
+
+    &--2 {
+      top: calc(50% + 89px);
+      left: calc(50% + 79px);
+      z-index: 1;
+    }
+  }
+
+  &--big.service--advertising &__icon,
+  &--active.service--advertising &__icon {
+    &--1 {
+      top: calc(50% - 157px);
+      left: calc(50% - 134px);
+
+      @include tablet {
+        width: 33px;
+        height: 33px;
+        top: calc(50% - 71px);
+        left: calc(50% - 62px);
+      }
+    }
+
+    &--2 {
+      top: calc(50% + 137px);
+      left: calc(50% + 127px);
+
+      @include tablet {
+        width: 57px;
+        height: 57px;
+        top: calc(50% + 89px);
+        left: calc(50% + 79px);
+      }
+    }
+  }
+
+  &--big.service--advertising &__icon {
+    &--1 {
+      @include mobile {
+        width: 20px;
+        height: 20px;
+        top: calc(50% - 84px);
+        left: calc(50% - 40px);
+      }
+    }
+
+    &--2 {
+      @include mobile {
+        width: 34px;
+        height: 34px;
+        top: calc(50% + 6px);
+        left: calc(50% + 38px);
+      }
+    }
+  }
+
+  /* calc */
+  &--big.service--calc &__icon,
+  &--active.service--calc &__icon {
+    z-index: 1;
+
+    &--1 {
+      top: calc(50% - 160px);
+      left: calc(50% - 84px);
+
+      @include tablet {
+        width: 27px;
+        height: 27px;
+        top: calc(50% - 64px);
+        left: calc(50% - 42px);
+      }
+    }
+
+    &--2 {
+      top: calc(50% + 150px);
+      left: calc(50% + 80px);
+
+      @include tablet {
+        width: 34px;
+        height: 34px;
+        top: calc(50% + 92px);
+        left: calc(50% + 40px);
+      }
+    }
+  }
+
+  &--big.service--calc &__icon {
+    &--1 {
+      @include mobile {
+        width: 14px;
+        height: 14px;
+        top: calc(50% - 84px);
+        left: calc(50% - 28px);
+      }
+    }
+
+    &--2 {
+      @include mobile {
+        width: 17px;
+        height: 17px;
+        top: calc(50% + 21px);
+        left: calc(50% + 25px);
+      }
+    }
+  }
+
+  // &--active.service--calc &__icon {
+  //   &--1 {
+  //     left: calc(50% - 213px);
+  //   }
+
+  //   &--2 {
+  //     top: calc(50% + 122px);
+  //     left: calc(50% + 175px);
+  //   }
+  // }
+
+  /* end of calc */
+
+  &--big &__link:hover &__img,
+  &--active &__img {
+    transform: translate(-50%, calc(-50% - 20px));
+  }
+
+  &--big &__link:hover &__img {
+    @include mobile {
+      // transform: translate(-50%, calc(-50% - 10px));
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--big &__link:hover &__text,
+  &--active &__text {
+    transform: translate(-50%, calc(-50% + 20px));
+  }
+
+  &--big &__link:hover &__text {
+    @include mobile {
+      // transform: translate(-50%, calc(-50% + 10px));
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &--big &__link:hover &__icon,
+  &--active &__icon {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}

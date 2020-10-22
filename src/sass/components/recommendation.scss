@@ -1,0 +1,75 @@
+.recommendation {
+  height: 100%;
+  padding: 32px 40px;
+  background-color: $alabaster;
+  box-shadow: 4px 4px 40px rgba($black, 0.05);
+
+  @include mobile {
+    padding: 24px 24px 32px;
+  }
+
+  &__icon {
+    display: block;
+    margin-bottom: 24px;
+    width: 48px;
+    height: 48px;
+
+    @include mobile {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    margin-bottom: 40px;
+    font-family: $font-montserrat;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+
+    @include mobile {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+
+    &--two-cols {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 18px;
+
+      @include mobile {
+        display: block;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+
+    @include mobile {
+      line-height: 1.5;
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    svg {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      fill: $turquoise;
+    }
+  }
+}
