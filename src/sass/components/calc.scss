@@ -254,7 +254,7 @@
   &__text-input {
     appearance: textfield;
     width: 50%;
-    padding-left: 16px;
+    padding: 0 16px;
     border: 0;
     font-size: 16px;
     box-shadow: none;
@@ -283,7 +283,6 @@
   &__form-item.half &__size-input {
     width: 100%;
     padding-top: 12px;
-    padding-left: 16px;
 
     &:focus {
       outline: 0;
