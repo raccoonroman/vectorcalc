@@ -187,7 +187,7 @@
 
 
   $: if (service.id === 'printing' && service.type instanceof Object) {
-    const { price, params, additionals } = service;
+    const { price = 0, params = [], additionals = [] } = service;
     const square = getSquare(params);
 
     const paramsSelectsPrice = params
