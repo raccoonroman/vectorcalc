@@ -309,49 +309,67 @@ template {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/roboto-v20-cyrillic-regular.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-regular.woff") format("woff"); }
+  src: url("../fonts/roboto-v20-cyrillic-regular.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-regular.woff") format("woff"); }
 
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url("../fonts/roboto-v20-cyrillic-700.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-700.woff") format("woff"); }
+  src: url("../fonts/roboto-v20-cyrillic-700.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-700.woff") format("woff"); }
 
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: local("Roboto Black"), local("Roboto-Black"), url("../fonts/roboto-v20-cyrillic-900.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-900.woff") format("woff"); }
+  src: url("../fonts/roboto-v20-cyrillic-900.woff2") format("woff2"), url("../fonts/roboto-v20-cyrillic-900.woff") format("woff"); }
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("Montserrat Regular"), local("Montserrat-Regular"), url("../fonts/montserrat-v14-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-regular.woff") format("woff"); }
+  src: url("../fonts/montserrat-v14-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-regular.woff") format("woff"); }
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local("Montserrat SemiBold"), local("Montserrat-SemiBold"), url("../fonts/montserrat-v14-latin_cyrillic-600.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-600.woff") format("woff"); }
+  src: url("../fonts/montserrat-v14-latin_cyrillic-600.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-600.woff") format("woff"); }
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local("Montserrat Bold"), local("Montserrat-Bold"), url("../fonts/montserrat-v14-latin_cyrillic-700.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-700.woff") format("woff"); }
+  src: url("../fonts/montserrat-v14-latin_cyrillic-700.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-700.woff") format("woff"); }
 
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: local("Montserrat ExtraBold"), local("Montserrat-ExtraBold"), url("../fonts/montserrat-v14-latin_cyrillic-800.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-800.woff") format("woff"); }
+  src: url("../fonts/montserrat-v14-latin_cyrillic-800.woff2") format("woff2"), url("../fonts/montserrat-v14-latin_cyrillic-800.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/calculator/merriweather-v22-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/calculator/merriweather-v22-latin_cyrillic-regular.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/calculator/oswald-v35-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/calculator/oswald-v35-latin_cyrillic-regular.woff") format("woff"); }
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/calculator/roboto-mono-v12-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/calculator/roboto-mono-v12-latin_cyrillic-regular.woff") format("woff"); }
 
 *,
 *::before,
@@ -3830,7 +3848,7 @@ main {
        -moz-appearance: textfield;
             appearance: textfield;
     width: 50%;
-    padding-left: 16px;
+    padding: 0 16px;
     border: 0;
     font-size: 16px;
     box-shadow: none;
@@ -3854,8 +3872,7 @@ main {
       opacity: 1; }
   .calc__form-item.half .calc__size-input {
     width: 100%;
-    padding-top: 12px;
-    padding-left: 16px; }
+    padding-top: 12px; }
     .calc__form-item.half .calc__size-input:focus {
       outline: 0; }
     .calc__form-item.half .calc__size-input:focus::-moz-placeholder {
