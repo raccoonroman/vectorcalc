@@ -1089,19 +1089,15 @@ main {
   @media (max-width: 767px) {
     .service--big .service__link {
       min-height: 196px; } }
-  .service--big.service--printing .service__link {
-    background-color: #F0F0F0; }
+  .service--big.service--advertising .service__link,
   .service--big.service--calc .service__link {
-    background-color: #F1F1F1; }
-    @media (max-width: 767px) {
-      .service--big.service--calc .service__link {
-        background-color: #F0F0F0; } }
-  .service--big.service--design .service__link,
-  .service--big.service--advertising .service__link {
+    background-color: #F0F0F0; }
+  .service--big.service--printing .service__link,
+  .service--big.service--design .service__link {
     background-color: #FFF; }
     @media (max-width: 767px) {
-      .service--big.service--design .service__link,
-      .service--big.service--advertising .service__link {
+      .service--big.service--printing .service__link,
+      .service--big.service--design .service__link {
         background-color: #F0F0F0; } }
   .service--big.service--printing .service__link:hover, .service--big.service--printing .service__link:focus,
   .service--big.service--design .service__link:hover,
@@ -4018,7 +4014,7 @@ main {
       .calc__poster-dots {
         top: 32px; } }
   .calc__summary {
-    max-width: 358px;
+    max-width: 375px;
     margin: 0 auto;
     position: relative; }
     @media (max-width: 767px) {
@@ -4046,7 +4042,7 @@ main {
   .calc__summary-price-value {
     margin: 0;
     margin-bottom: 26px;
-    font-size: 82px;
+    font-size: 76px;
     font-weight: 500;
     line-height: 1.2;
     color: #333; }
