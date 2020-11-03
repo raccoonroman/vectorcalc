@@ -7,7 +7,7 @@
       {
         "id": "printingBanner",
         "name": "на банері",
-        "price": 88,
+        "price": 62.7,
         "params": [
           {
             "id": "height",
@@ -39,7 +39,7 @@
               },
               {
                 "name": "Литий",
-                "price": 17
+                "price": 12.1
               }
             ]
           },
@@ -50,16 +50,19 @@
             "value": "",
             "options": [
               {
+                "id": "bannerQuality720",
                 "name": "720 dpi",
                 "price": 0
               },
               {
+                "id": "bannerQuality1080",
                 "name": "1080 dpi",
-                "price": 15
+                "price": 20.4
               },
               {
+                "id": "bannerQuality1440",
                 "name": "1440 dpi",
-                "price": 30
+                "price": 37
               }
             ]
           },
@@ -68,46 +71,39 @@
             "type": "select",
             "label": "Люверсовка",
             "value": "",
+            "price": 1.92,
             "options": [
               {
                 "name": "Без люверсовки",
-                "price": 0
+                "id": "luversOption1"
               },
               {
                 "name": "По периметру",
-                "price": 2
+                "id": "luversOption2"
               },
               {
-                "name": "По міткам в макеті",
-                "price": 4
+                "name": "По кутам",
+                "id": "luversOption3"
               },
               {
-                "name": "По краям",
-                "price": 6
-              },
-              {
-                "name": "По краям і середині",
-                "price": 8
+                "name": "По кутам і середині",
+                "id": "luversOption4"
               },
               {
                 "name": "Тільки верх",
-                "price": 10
+                "id": "luversOption5"
               },
               {
                 "name": "Тільки низ",
-                "price": 12
-              },
-              {
-                "name": "Тільки низ",
-                "price": 14
+                "id": "luversOption6"
               },
               {
                 "name": "Верх і низ",
-                "price": 16
+                "id": "luversOption7"
               },
               {
                 "name": "Ліво і право",
-                "price": 18
+                "id": "luversOption8"
               }
             ]
           },
@@ -118,16 +114,19 @@
             "value": "",
             "options": [
               {
+                "id": "soldering1",
                 "name": "Без спайки",
                 "price": 0
               },
               {
+                "id": "soldering2",
                 "name": "По периметру",
-                "price": 24
+                "price": 20
               },
               {
+                "id": "soldering3",
                 "name": "По периметру з тросом",
-                "price": 40
+                "price": 24
               }
             ]
           },
@@ -135,39 +134,40 @@
             "id": "bannerPipePocket",
             "type": "select",
             "label": "Карман под трубу",
+            "price": 20,
             "value": "",
             "options": [
               {
                 "name": "Без карману",
-                "price": 0
+                "id": "pipePocketOption1"
               },
               {
                 "name": "Тільки зверху",
-                "price": 3
+                "id": "pipePocketOption2"
               },
               {
                 "name": "Тільки знизу",
-                "price": 3
+                "id": "pipePocketOption3"
               },
               {
                 "name": "Тільки зліва",
-                "price": 3
+                "id": "pipePocketOption4"
               },
               {
                 "name": "Тільки справа",
-                "price": 3
+                "id": "pipePocketOption5"
               },
               {
                 "name": "Верх і низ",
-                "price": 6
+                "id": "pipePocketOption6"
               },
               {
                 "name": "Ліво і право",
-                "price": 6
+                "id": "pipePocketOption7"
               },
               {
                 "name": "По периметру",
-                "price": 12
+                "id": "pipePocketOption8"
               }
             ]
           }
@@ -177,13 +177,13 @@
             "id": "urgentProd24",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>24 год</small>",
-            "price": 14
+            "coefficient": 1
           },
           {
             "id": "urgentProd4",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>4 год</small>",
-            "price": 24
+            "coefficient": 1.3
           }
         ]
       },
@@ -191,7 +191,7 @@
       {
         "id": "printingPaper",
         "name": "на папері",
-        "price": 23,
+        "price": 19,
         "params": [
           {
             "id": "height",
@@ -200,7 +200,11 @@
             "label": "Висота (см)",
             "placeholder": "Висота (см)",
             "min": 10,
-            "max": 1000
+            "max": 1000,
+            "conditionalMax": {
+              "limited": 150,
+              "regular": 1000
+            }
           },
           {
             "id": "width",
@@ -209,7 +213,11 @@
             "label": "Ширина (см)",
             "placeholder": "Ширина (см)",
             "min": 10,
-            "max": 1000
+            "max": 1000,
+            "conditionalMax": {
+              "limited": 150,
+              "regular": 1000
+            }
           },
           {
             "id": "paperMaterial",
@@ -223,11 +231,11 @@
               },
               {
                 "name": "City-light",
-                "price": 28
+                "price": 20
               },
               {
                 "name": "Poster paper",
-                "price": 84
+                "price": 102
               }
             ]
           },
@@ -239,15 +247,15 @@
             "options": [
               {
                 "name": "720 dpi",
-                "price": 15
+                "price": 10
               },
               {
                 "name": "1080 dpi",
-                "price": 30
+                "price": 27
               },
               {
                 "name": "1440 dpi",
-                "price": 45
+                "price": 40
               }
             ],
             "conditionalOptions": [
@@ -263,20 +271,20 @@
             "id": "urgentProd24",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>24 год</small>",
-            "price": 14
+            "coefficient": 1
           },
           {
             "id": "urgentProd4",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>4 год</small>",
-            "price": 24
+            "coefficient": 1.3
           }
         ]
       },
       {
         "id": "printingBannerGrid",
         "name": "на банерній сітці",
-        "price": 20,
+        "price": 84,
         "params": [
           {
             "id": "height",
@@ -304,15 +312,15 @@
             "options": [
               {
                 "name": "720 dpi",
-                "price": 15
+                "price": 0
               },
               {
                 "name": "1080 dpi",
-                "price": 30
+                "price": 0
               },
               {
                 "name": "1440 dpi",
-                "price": 45
+                "price": 0
               }
             ]
           }
@@ -322,20 +330,20 @@
             "id": "urgentProd24",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>24 год</small>",
-            "price": 14
+            "coefficient": 1
           },
           {
             "id": "urgentProd4",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>4 год</small>",
-            "price": 24
+            "coefficient": 1.3
           }
         ]
       },
       {
         "id": "printingTent",
         "name": "на тентованій тканині",
-        "price": 30,
+        "price": 420,
         "params": [
           {
             "id": "height",
@@ -362,33 +370,18 @@
             "value": "",
             "options": [
               {
-                "name": "720 dpi",
-                "price": 15
-              },
-              {
                 "name": "1080 dpi",
-                "price": 30
-              },
-              {
-                "name": "1440 dpi",
-                "price": 45
+                "price": 0
               }
             ]
           }
         ],
-        "additionals": [
-          {
-            "id": "urgentProd24",
-            "type": "toggle",
-            "label": "Терміновий друк <br> <small>24 год</small>",
-            "price": 14
-          }
-        ]
+        "additionals": []
       },
       {
         "id": "printingFilm",
         "name": "на плівці",
-        "price": 40,
+        "price": 63,
         "params": [
           {
             "id": "height",
@@ -396,7 +389,7 @@
             "type": "number",
             "label": "Висота (см)",
             "placeholder": "Висота (см)",
-            "min": 100,
+            "min": 5,
             "max": 1000
           },
           {
@@ -405,7 +398,7 @@
             "type": "number",
             "label": "Ширина (см)",
             "placeholder": "Ширина (см)",
-            "min": 100,
+            "min": 5,
             "max": 1000
           },
           {
@@ -416,35 +409,31 @@
             "options": [
               {
                 "name": "Глянцева",
-                "price": 1
+                "price": 0
               },
               {
                 "name": "Матова",
-                "price": 2
+                "price": 28.4
               },
               {
                 "name": "Прозора",
-                "price": 3
-              },
-              {
-                "name": "Легкознімна",
-                "price": 4
+                "price": 28.4
               },
               {
                 "name": "Black out",
-                "price": 5
+                "price": 70
               },
               {
                 "name": "One way",
-                "price": 6
+                "price": 61.7
               },
               {
                 "name": "Автомобільна",
-                "price": 7
+                "price": 240.5
               },
               {
                 "name": "Підлогова",
-                "price": 8
+                "price": 240.5
               }
             ]
           },
@@ -456,15 +445,15 @@
             "options": [
               {
                 "name": "720 dpi",
-                "price": 15
+                "price": 0
               },
               {
                 "name": "1080 dpi",
-                "price": 30
+                "price": 15
               },
               {
                 "name": "1440 dpi",
-                "price": 45
+                "price": 33
               }
             ]
           }
@@ -474,33 +463,36 @@
             "id": "urgentProd24",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>24 год</small>",
-            "price": 14
+            "coefficient": 1
           },
           {
             "id": "urgentProd4",
             "type": "toggle",
             "label": "Терміновий друк <br> <small>4 год</small>",
-            "price": 24
+            "coefficient": 1.3
           },
           {
             "id": "filmPlotterCutting",
             "type": "checkbox",
-            "label": "Плотерна різка надрукованого зображення",
-            "price": 1,
-            "info": "Високоточна технологія, яка дозволяє вирізати навіть самі складні фігурні зображення на будь-якому матеріалі. Зазвичай для плоттерної порізки (або по-іншому - висікання) використовують самоклеючий папір, термопереносну плівку, вініл. Висічені таким способом зображення наносяться на різноманітні поверхні - починаючи від тканини і закінчуючи склом та металом."
+            "label": "Плотерна порізка",
+            "price": 70,
+            "minPrice": 5,
+            "info": "Вироби для плоттерной порізки розкладаються на максимальну ширину друку на матеріалі за вирахуванням 20мм"
           },
           {
             "id": "filmEdgeCutting",
             "type": "checkbox",
-            "label": "Різка плівки в край",
-            "price": 2,
+            "label": "Порізка плівки",
+            "price": 10,
+            "minPrice": 5,
             "info": "Lorem ipsum, dolor sit amet"
           },
           {
             "id": "filmLamination",
             "type": "checkbox",
             "label": "Ламінування",
-            "price": 3,
+            "price": 47.08,
+            "minPrice": 10,
             "info": "Ламінування чи ламінація — процес нанесення на поліграфічну продукцію прозорої плівки. Основним завданням та метою ламінування є захист готової друкованої продукції від впливу зовнішніх факторів та значне продовження терміну її експлуатації. Ламінування захищає як від вологи та пилу, так і механічного впливу."
           }
         ]
@@ -508,7 +500,7 @@
       {
         "id": "printingWallpaper",
         "name": "на шпалерах",
-        "price": 50,
+        "price": 300,
         "params": [
           {
             "id": "height",
@@ -534,18 +526,17 @@
             "label": "Матеріал",
             "value": "",
             "options": [
-              {
-                "name": "Variant 1",
-                "price": 1
-              },
-              {
-                "name": "Variant 2",
-                "price": 2
-              },
-              {
-                "name": "Variant 3",
-                "price": 3
-              }
+              { "name": "Класік" },
+              { "name": "Венеція" },
+              { "name": "Полотно" },
+              { "name": "Пензлик" },
+              { "name": "Іній" },
+              { "name": "Пісок" },
+              { "name": "Штукатурка" },
+              { "name": "Фреска" },
+              { "name": "Шкіра" },
+              { "name": "Гладь" },
+              { "name": "Сатин" }
             ]
           },
           {
@@ -555,16 +546,8 @@
             "value": "",
             "options": [
               {
-                "name": "720 dpi",
-                "price": 15
-              },
-              {
-                "name": "1080 dpi",
-                "price": 30
-              },
-              {
                 "name": "1440 dpi",
-                "price": 45
+                "price": 0
               }
             ]
           }
@@ -576,14 +559,15 @@
   {
     "id": "letters",
     "name": "Об’ємні букви",
+    "price": 20,
     "params": [
       {
-        "id": "height",
+        "id": "letterHeight",
         "type": "number",
         "label": "Висота букви (см)",
-        "placeholder": 0,
-        "min": 10,
-        "max": 1000
+        "placeholder": "-",
+        "min": 15,
+        "max": 100
       },
       {
         "id": "lettersFontFamily",
@@ -597,19 +581,19 @@
           },
           {
             "name": "Montserrat",
-            "price": 7
+            "price": 0
           },
           {
             "name": "Merriweather",
-            "price": 14
+            "price": 0
           },
           {
             "name": "Oswald",
-            "price": 21
+            "price": 0
           },
           {
             "name": "Roboto Mono",
-            "price": 28
+            "price": 0
           }
         ]
       },
@@ -632,11 +616,11 @@
           },
           {
             "name": "лице акрил, борт пвх",
-            "price": 17
+            "price": 5
           },
           {
             "name": "лице акрил, борт акрил",
-            "price": 34
+            "price": 30
           }
         ]
       },
@@ -651,28 +635,23 @@
             "price": 0
           },
           {
-            "name": "лицьова світлова панель",
-            "price": 13
-          },
-          {
             "name": "контражурна підсвітка",
-            "price": 26
+            "price": 2
+          }
+        ],
+        "conditionalOptions": [
+          {
+            "name": "лицьова світлова панель",
+            "price": 1
           },
           {
             "name": "світло: лице + контражур",
-            "price": 26
+            "price": 3
           }
         ]
       }
     ],
-    "additionals": [
-      {
-        "id": "urgentProd24",
-        "type": "toggle",
-        "label": "Терміновий друк <br> <small>24 год</small>",
-        "price": 14
-      }
-    ]
+    "additionals": []
   },
   {
     "id": "lightbox",
@@ -759,7 +738,7 @@
         "type": "number",
         "label": "Висота (см)",
         "placeholder": "Висота (см)",
-        "min": 100,
+        "min": 5,
         "max": 1000
       },
       {
@@ -768,7 +747,7 @@
         "type": "number",
         "label": "Ширина (см)",
         "placeholder": "Ширина (см)",
-        "min": 100,
+        "min": 5,
         "max": 1000
       },
       {
@@ -858,8 +837,8 @@
         "type": "number",
         "label": "Висота (см)",
         "placeholder": "Висота (см)",
-        "min": 100,
-        "max": 1000
+        "min": 25,
+        "max": 200
       },
       {
         "id": "width",
@@ -867,8 +846,8 @@
         "type": "number",
         "label": "Ширина (см)",
         "placeholder": "Ширина (см)",
-        "min": 100,
-        "max": 1000
+        "min": 25,
+        "max": 200
       },
       {
         "id": "standMaterial",
@@ -890,9 +869,9 @@
         "id": "standPockets",
         "type": "number",
         "label": "Кількість кишень",
-        "placeholder": "0",
+        "placeholder": "-",
         "min": 0,
-        "max": 10,
+        "max": 128,
         "conditionalParams": [
           {
             "id": "standPocketsSize",
@@ -931,7 +910,7 @@
             "price": 18
           },
           {
-            "name": "повнокольоровий друк високого розширення",
+            "name": "повнокольоровий друк",
             "price": 36
           }
         ]

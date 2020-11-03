@@ -43,20 +43,13 @@ $home-transition: transform 0.5s;
     }
   }
 
-  &--big.service--printing &__link {
+  &--big.service--advertising &__link,
+  &--big.service--calc &__link {
     background-color: $gallery;
   }
 
-  &--big.service--calc &__link {
-    background-color: $seashell;
-
-    @include mobile {
-      background-color: $gallery;
-    }
-  }
-
-  &--big.service--design &__link,
-  &--big.service--advertising &__link {
+  &--big.service--printing &__link,
+  &--big.service--design &__link {
     background-color: $white;
 
     @include mobile {
