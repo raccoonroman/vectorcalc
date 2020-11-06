@@ -56,19 +56,57 @@
     textInput.style.fontFamily = `${fontFamily}, ${fontGeneric[fontFamily]}`;
   };
 
-  const getParamSquare = () => service.params
-    .filter(({ id }) => id === 'height' || id === 'width')
-    .reduce((acc, param) => acc * param.value, 1) / 10000;
+  const getParamSquare = () => {
+    const width = getParamByElementId('width');
+    const height = getParamByElementId('height');
+    return width.value * height.value  / 1000000;
+  };
 
-  const getParamPerimeter = () => service.params
-    .filter(({ id }) => id === 'height' || id === 'width')
-    .reduce((acc, param) => acc + param.value, 0) * 2 / 100;
+  const getParamPerimeter = () => {
+    const width = getParamByElementId('width');
+    const height = getParamByElementId('height');
+    return (width.value + height.value) * 2 / 1000;
+  };
+
+
+  const addConditionalOptionsToParamOptions = (param, position = 'afterend') => {
+    const { options, conditionalOptions } = param;
+    const hasParamConditionalOptions = options.some((option) => (
+      conditionalOptions.some(({ name }) => name === option.name)
+    ));
+
+    let newOptions;
+    switch (position) {
+      case 'afterend':
+        newOptions = [...options, ...conditionalOptions];
+        break;
+      case 'beforeend':
+        newOptions = [...conditionalOptions, ...options];
+        break;
+      default:
+        newOptions = options;
+    }
+    param.options = !hasParamConditionalOptions ? newOptions : options;
+  };
+
+  const removeConditionalOptionsFromParamOptins = (param) => {
+    const { options, conditionalOptions } = param;
+    param.options = options.filter(({ name }) => (
+      !conditionalOptions.some((option) => option.name === name)
+    ));
+    const isParamValueFromConditionals = conditionalOptions.some((option) => option === param.value)
+    param.value = isParamValueFromConditionals ? param.options[param.options.length - 1] : param.value;
+  };
 
   // form event listeners
   const onServiceChange = () => {
     if (service.id === 'letters') { // відновити шрифт, коли міняється тип самої послуги
       const fontFamilyParam = getParamByElementId('lettersFontFamily');
       setInputFontFamily(fontFamilyParam);
+    }
+    if (service.id === 'stand') {
+      const materialParam = getParamByElementId('standMaterial');
+      addConditionalOptionsToParamOptions(materialParam);
     }
   };
 
@@ -89,12 +127,24 @@
     validateNumber(param);
 
     if (param.id === 'standPockets') { // коли встановили кількість кишень - відобразити додаткові поля
-      param.subparams = param.value && param.conditionalParams;
+      param.subparams = param.value > 0 && param.conditionalParams;
+    }
+  };
+
+  const limitMaxValueForSide = (widthParam, heightParam, currentParam) => {
+    if (currentParam.id === 'width') {
+      const { limited, regular } = heightParam.conditionalMax;
+      heightParam.max = currentParam.value > currentParam.conditionalMax.limited ? limited : regular;
+    } else if (currentParam.id === 'height') {
+      const { limited, regular } = widthParam.conditionalMax;
+      widthParam.max = currentParam.value > currentParam.conditionalMax.limited ? limited : regular;
     }
   };
 
   const onNumberFieldBlur = ({ target }) => {
     const param = getParamByElementId(target.id);
+    const widthParam = getParamByElementId('width');
+    const heightParam = getParamByElementId('height');
 
     if (param.value && param.value < param.min) {
       param.value = param.min;
@@ -104,40 +154,38 @@
     }
 
     switch (service.id) {
-      case 'stand': { // коли змінилася площа стенду - перерахувати кількість кишень
-        if (param.id === 'width' || param.id === 'height') {
-          const pocketsCountParam = getParamByElementId('standPockets');
+      case 'stand': {
+        const pocketsCountParam = getParamByElementId('standPockets');
+        const materialParam = getParamByElementId('standMaterial');
+
+        limitMaxValueForSide(widthParam, heightParam, param);
+
+        if (param.id === 'width' || param.id === 'height') { // коли змінилася площа стенду - перерахувати кількість кишень
           if (pocketsCountParam.subparams) {
             const pocketsSizeParam = pocketsCountParam.subparams.find(({ id }) => id === 'standPocketsSize');
             setPocketsCountValue(pocketsCountParam, pocketsSizeParam);
           }
         }
+
+        if (widthParam.value > 1500 || heightParam.value > 1500) {
+          removeConditionalOptionsFromParamOptins(materialParam);
+        } else {
+          addConditionalOptionsToParamOptions(materialParam);
+        }
         break;
       }
       case 'printing': {
-        const widthParam = getParamByElementId('width');
-        const heightParam = getParamByElementId('height');
-
-        if (service.type.id === 'printingPaper') { // одне із значень (ширина, висота) не може бути більше 150см, для паперу
-
-          if (param.id === 'width') {
-            const { limited, regular } = heightParam.conditionalMax;
-            heightParam.max = param.value > param.conditionalMax.limited ? limited : regular;
-          }
-
-          if (param.id === 'height') {
-            const { limited, regular } = widthParam.conditionalMax;
-            widthParam.max = param.value > param.conditionalMax.limited ? limited : regular;
-          }
+        if (service.type.id === 'printingPaper') {
+          limitMaxValueForSide(widthParam, heightParam, param);
         }
 
-        if (service.type.id === 'printingBanner') { // якщо ширина або висота більше 160см - 1400dpi недоступно
+        if (service.type.id === 'printingBanner') {
           const qualityParam = getParamByElementId('bannerQuality');
-          const qyality1440 = qualityParam.options.find(({ id }) => id === 'bannerQuality1440');
-          qyality1440.disabled = widthParam.value > 160 || heightParam.value > 160;
 
-          if (qyality1440.disabled && qualityParam.value === qyality1440) {
-            qualityParam.value = qualityParam.options[0];
+          if (widthParam.value < 1600 && heightParam.value < 1600) { // якщо ширина або висота більше 160см - 1400dpi недоступно
+            addConditionalOptionsToParamOptions(qualityParam);
+          } else {
+            removeConditionalOptionsFromParamOptins(qualityParam);
           }
         }
         break;
@@ -153,52 +201,31 @@
     const param = getParamByElementId(target.id);
 
     switch (param.id) {
-      case 'lettersFontFamily': {
+      case 'lettersFontFamily':
         setInputFontFamily(param);
         break;
-      }
-      case 'paperMaterial': { // якщо матеріал "Blue-back" - додати якість 360dpi
+      case 'paperMaterial': // якщо матеріал "Blue-back" - додати якість 360dpi
         const qualityParam = getParamByElementId('paperQuality');
-        if (param.value.name === 'Blue-back') {
-          qualityParam.options = [...qualityParam.conditionalOptions, ...qualityParam.options];
+        if (param.value.id === 'paperBlueBack') {
+          addConditionalOptionsToParamOptions(qualityParam, 'beforeend');
         } else {
-          qualityParam.options = qualityParam.options.filter(({ name }) => (
-            !qualityParam.conditionalOptions.some((option) => option.name === name)
-          ));
-          qualityParam.value = qualityParam.options[0];
+          removeConditionalOptionsFromParamOptins(qualityParam);
         }
         break;
-      }
-      case 'numberPlateMaterial': { // при зміні матеріалу таблички - відобразити дод. поля
-        param.subparams = param.conditionalParams.filter(({ forParam }) => forParam === param.value.name);
+      case 'numberPlateMaterial':
+      case 'letterMaterial':
+      case 'lightboxMaterial': // при зміні матеріалу - відобразити дод. поля
+        param.subparams = param.conditionalParams.filter(({ forOptionId }) => forOptionId === param.value.id);
         break;
-      }
-
-      case 'letterMaterial': { // при зміні матерілау ОБ - відобразити параметри підсвічування
-        const bgParam = getParamByElementId('lettersBackground');
-        const { options, conditionalOptions } = bgParam;
-
-        if (param.value.name === 'лице акрил, борт пвх' || param.value.name === 'лице акрил, борт акрил') {
-          const hasBgParamConditionalOptions = options.some((option) => (
-            conditionalOptions.some(({ name }) => name === option.name)
-          ));
-          bgParam.options = !hasBgParamConditionalOptions ? [...options, ...conditionalOptions] : options;
-        } else {
-          bgParam.options = options.filter(({ name }) => (
-            !conditionalOptions.some((option) => option.name === name)
-          ));
-        }
+      default:
         break;
-      }
-
-      default: break;
     }
   };
 
   const setPocketsCountValue = (param, subparam) => {
     const paramSquare = getParamSquare();
     const { width, height } = paperFormats.find(({ name }) => name === subparam.value.name);
-    const maxPocketsCount = Math.floor(paramSquare / (width * height));
+    const maxPocketsCount = Math.floor(paramSquare / (width * height * 1.2));
     param.value = maxPocketsCount < param.value ? maxPocketsCount : param.value;
   };
 
@@ -235,7 +262,7 @@
     openPopup(evt);
   };
 
-  const roundPrice = (price) => Math.round(price * 100) / 100;
+  const roundPrice = (price) => Math.round(price);
 
   const calcLuversPrice = () => {
     const widthParam = getParamByElementId('width');
@@ -244,6 +271,8 @@
     const stepBetweenEyelets = 0.3; // крок між люверсами
     const anglesNumber = 4;
     const sidesNumber = 4;
+    const width = widthParam.value / 1000;
+    const height = heightParam.value / 1000;
 
     switch (luversParam.value.id) {
       case 'luversOption1': // "Без люверсовки"
@@ -256,11 +285,11 @@
         return (anglesNumber + sidesNumber) * luversParam.price;
       case 'luversOption5': // "Тільки верх"
       case 'luversOption6': // "Тільки низ"
-        return Math.ceil(widthParam.value / 100 / stepBetweenEyelets) * luversParam.price;
+        return Math.ceil(width / stepBetweenEyelets) * luversParam.price;
       case 'luversOption7': // "Верх і низ"
-        return Math.ceil(widthParam.value / 100 / stepBetweenEyelets) * 2 * luversParam.price;
+        return Math.ceil(width / stepBetweenEyelets) * 2 * luversParam.price;
       case 'luversOption8': // "Ліво і право"
-        return Math.ceil(heightParam.value / 100 / stepBetweenEyelets) * 2 * luversParam.price;
+        return Math.ceil(height / stepBetweenEyelets) * 2 * luversParam.price;
       default:
         return 0;
     }
@@ -282,27 +311,42 @@
         return 0;
       case 'pipePocketOption2': // "Тільки зверху"
       case 'pipePocketOption3': // "Тільки знизу"
-        return widthParam.value / 100 * pipePocketParam.price;
+        return widthParam.value / 1000 * pipePocketParam.price;
       case 'pipePocketOption4': // "Тільки зліва"
       case 'pipePocketOption5': // "Тільки справа"
-        return heightParam.value / 100 * pipePocketParam.price;
+        return heightParam.value / 1000 * pipePocketParam.price;
       case 'pipePocketOption6': // "Верх і низ"
-        return widthParam.value * 2 / 100 * pipePocketParam.price;
+        return widthParam.value * 2 / 1000 * pipePocketParam.price;
       case 'pipePocketOption7': // "Ліво і право"
-        return heightParam.value * 2 / 100 * pipePocketParam.price;
+        return heightParam.value * 2 / 1000 * pipePocketParam.price;
       case 'pipePocketOption8': // "По периметру"
-        return heightParam.value * 2 / 100 * pipePocketParam.price;
+        return heightParam.value * 2 / 1000 * pipePocketParam.price;
       default:
         return 0;
     }
   };
 
+  const calcPocketsPrice = () => {
+    const pocketsCountParam = getParamByElementId('standPockets');
+
+    if (pocketsCountParam.value > 0 && pocketsCountParam.subparams) {
+      const pocketSize = pocketsCountParam.subparams.find(({ id }) => id === 'standPocketsSize');
+      return pocketsCountParam.value * pocketSize.value.price || 0;
+    }
+
+    return 0;
+  };
+
+  const calcParamSelectsPrice = (params = [], size = 1) => (
+    params
+      .filter((param) => param.type === 'select')
+      .reduce((acc, param) => acc + (param.value.price * size || 0), 0)
+  );
+
   const isAllParamsChosenAndValid = (params) => {
     const selectsValid = params.filter(({ type }) => type === 'select').every(({ value }) => value.name);
     const textsValid = params.filter(({ type }) => type === 'text').every(({ value }) => value.trim().length);
-    const numbersValid = params
-      .filter(({ id }) => id === 'height' || id === 'width' || id === 'letterHeight' || id === 'standPockets')
-      .every(({ valid }) => valid);
+    const numbersValid = params.filter(({ type }) => type === 'number').every(({ valid }) => valid);
 
     return selectsValid && textsValid && numbersValid;
   };
@@ -311,28 +355,10 @@
     allParamsChosenAndValid = isAllParamsChosenAndValid(service.params);
   }
 
-  $: if (service.id === 'letters') {
-    const { price, params } = service;
-
-    const lettersHeight = getParamByElementId('letterHeight');
-    const lettersText = getParamByElementId('lettersText');
-    const lettersHeightPrice = lettersHeight.value * price || 0;
-    const lettersTextLength = lettersText.value ? lettersText.value.replace(/\s/g, '').length : 0;
-
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price * lettersHeight.value || 0), 0);
-
-    totalPrice = roundPrice((lettersHeightPrice + paramsSelectsPrice) * lettersTextLength);
-  }
-
   $: if (service.id === 'printing' && service.params) {
     const { price, params, additionals } = service;
     const square = getParamSquare();
-
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price * square || 0), 0);
+    const paramsSelectsPrice = calcParamSelectsPrice(params, square);
 
     const urgentParam = additionals.find((i) => (i.id === 'urgentProd24' || i.id === 'urgentProd4') && i.checked);
     const urgentCoefficient = urgentParam ? urgentParam.coefficient : 1;
@@ -363,67 +389,48 @@
     }
   }
 
+  $: if (service.id === 'letters') {
+    const heightParam = getParamByElementId('letterHeight');
+    const textParam = getParamByElementId('lettersText');
+    const materialParam = getParamByElementId('letterMaterial');
+
+    const letterHeight = heightParam.value / 10;
+    const lettersTextLength = textParam.value ? textParam.value.replace(/\s/g, '').length : 0;
+
+    const paramsSelectsPrice = calcParamSelectsPrice(service.params, letterHeight);
+    const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, letterHeight);
+
+    totalPrice = roundPrice((paramsSelectsPrice + materialSubparamsPrice) * lettersTextLength);
+  }
+
   $: if (service.id === 'lightbox') {
-    const { price, params, additionals } = service;
     const square = getParamSquare();
+    const materialParam = getParamByElementId('lightboxMaterial');
+    const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, square);
 
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price || 0), 0);
-
-    const additionalPrice = additionals
-      .filter((i) => (i.type === 'checkbox' || i.type === 'toggle') && i.checked)
-      .reduce((acc, additional) => acc + additional.price, 0);
-
-    totalPrice = roundPrice(price * square + paramsSelectsPrice + additionalPrice);
+    totalPrice = roundPrice(materialParam.value.price + materialSubparamsPrice);
   }
 
   $: if (service.id === 'numberPlate') {
-    const { price, params, additionals } = service;
     const square = getParamSquare();
+    const materialParam = getParamByElementId('numberPlateMaterial');
+    const paramsSelectsPrice = calcParamSelectsPrice(service.params, square);
+    const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, square);
 
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price || 0), 0);
-
-    const additionalPrice = additionals
-      .filter((i) => (i.type === 'checkbox' || i.type === 'toggle') && i.checked)
-      .reduce((acc, additional) => acc + additional.price, 0);
-
-    totalPrice = roundPrice(price * square + paramsSelectsPrice + additionalPrice);
+    totalPrice = roundPrice(paramsSelectsPrice + materialSubparamsPrice);
   }
 
   $: if (service.id === 'stand') {
-    const { price, params, additionals } = service;
     const square = getParamSquare();
+    const paramsSelectsPrice = calcParamSelectsPrice(service.params, square);
 
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price || 0), 0);
-
-    const pocketsNumber = getParamByElementId('standPockets');
-    const pocketsPrice = pocketsNumber.value ? pocketsNumber.value * 10 : null;
-
-    const additionalPrice = additionals
-      .filter((i) => (i.type === 'checkbox' || i.type === 'toggle') && i.checked)
-      .reduce((acc, additional) => acc + additional.price, 0);
-
-    totalPrice = roundPrice(price * square + paramsSelectsPrice + pocketsPrice + additionalPrice);
+    totalPrice = roundPrice(paramsSelectsPrice + calcPocketsPrice());
   }
 
   $: if (service.id === 'stender') {
-    const { price, params, additionals } = service;
-    const square = getParamSquare();
+    const paramsSelectsPrice = calcParamSelectsPrice(service.params);
 
-    const paramsSelectsPrice = params
-      .filter((param) => param.type === 'select')
-      .reduce((acc, param) => acc + (param.value.price || 0), 0);
-
-    const additionalPrice = additionals
-      .filter((i) => (i.type === 'checkbox' || i.type === 'toggle') && i.checked)
-      .reduce((acc, additional) => acc + additional.price, 0);
-
-    totalPrice = roundPrice(price * square + paramsSelectsPrice + additionalPrice);
+    totalPrice = roundPrice(paramsSelectsPrice);
   }
 
   $: additionalsWithInfo = service.additionals && service.additionals.filter(({ info }) => info);

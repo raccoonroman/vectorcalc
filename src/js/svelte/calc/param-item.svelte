@@ -15,7 +15,7 @@
     <select bind:value={param.value} class="calc__select" {id} on:change={onSelectChange}>
       <option>Вибрати</option>
       {#each param.options as option}
-        <option value={option} disabled={option.disabled}>{option.name}</option>
+        <option value={option}>{option.name}</option>
       {/each}
     </select>
   {/if}

@@ -7,25 +7,25 @@
       {
         "id": "printingBanner",
         "name": "на банері",
-        "price": 62.7,
+        "price": 78,
         "params": [
-          {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 10,
-            "max": 1000
-          },
           {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 10,
-            "max": 1000
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 100,
+            "max": 10000
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 100,
+            "max": 10000
           },
           {
             "id": "bannerMaterial",
@@ -34,12 +34,14 @@
             "value": "",
             "options": [
               {
+                "id": "bannerMaterialLaminate",
                 "name": "Ламінат",
                 "price": 0
               },
               {
+                "id": "bannerMaterialCast",
                 "name": "Литий",
-                "price": 12.1
+                "price": 31
               }
             ]
           },
@@ -57,12 +59,14 @@
               {
                 "id": "bannerQuality1080",
                 "name": "1080 dpi",
-                "price": 20.4
-              },
+                "price": 20
+              }
+            ],
+            "conditionalOptions": [
               {
                 "id": "bannerQuality1440",
                 "name": "1440 dpi",
-                "price": 37
+                "price": 40
               }
             ]
           },
@@ -71,39 +75,39 @@
             "type": "select",
             "label": "Люверсовка",
             "value": "",
-            "price": 1.92,
+            "price": 2,
             "options": [
               {
-                "name": "Без люверсовки",
-                "id": "luversOption1"
+                "id": "luversOption1",
+                "name": "Без люверсовки"
               },
               {
-                "name": "По периметру",
-                "id": "luversOption2"
+                "id": "luversOption2",
+                "name": "По периметру"
               },
               {
-                "name": "По кутам",
-                "id": "luversOption3"
+                "id": "luversOption3",
+                "name": "По кутам"
               },
               {
-                "name": "По кутам і середині",
-                "id": "luversOption4"
+                "id": "luversOption4",
+                "name": "По кутам і середині"
               },
               {
-                "name": "Тільки верх",
-                "id": "luversOption5"
+                "id": "luversOption5",
+                "name": "Тільки верх"
               },
               {
-                "name": "Тільки низ",
-                "id": "luversOption6"
+                "id": "luversOption6",
+                "name": "Тільки низ"
               },
               {
-                "name": "Верх і низ",
-                "id": "luversOption7"
+                "id": "luversOption7",
+                "name": "Верх і низ"
               },
               {
-                "name": "Ліво і право",
-                "id": "luversOption8"
+                "id": "luversOption8",
+                "name": "Ліво і право"
               }
             ]
           },
@@ -138,36 +142,36 @@
             "value": "",
             "options": [
               {
-                "name": "Без карману",
-                "id": "pipePocketOption1"
+                "id": "pipePocketOption1",
+                "name": "Без карману"
               },
               {
-                "name": "Тільки зверху",
-                "id": "pipePocketOption2"
+                "id": "pipePocketOption2",
+                "name": "Тільки зверху"
               },
               {
-                "name": "Тільки знизу",
-                "id": "pipePocketOption3"
+                "id": "pipePocketOption3",
+                "name": "Тільки знизу"
               },
               {
-                "name": "Тільки зліва",
-                "id": "pipePocketOption4"
+                "id": "pipePocketOption4",
+                "name": "Тільки зліва"
               },
               {
-                "name": "Тільки справа",
-                "id": "pipePocketOption5"
+                "id": "pipePocketOption5",
+                "name": "Тільки справа"
               },
               {
-                "name": "Верх і низ",
-                "id": "pipePocketOption6"
+                "id": "pipePocketOption6",
+                "name": "Верх і низ"
               },
               {
-                "name": "Ліво і право",
-                "id": "pipePocketOption7"
+                "id": "pipePocketOption7",
+                "name": "Ліво і право"
               },
               {
-                "name": "По периметру",
-                "id": "pipePocketOption8"
+                "id": "pipePocketOption8",
+                "name": "По периметру"
               }
             ]
           }
@@ -191,32 +195,32 @@
       {
         "id": "printingPaper",
         "name": "на папері",
-        "price": 19,
+        "price": 24,
         "params": [
-          {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 10,
-            "max": 1000,
-            "conditionalMax": {
-              "limited": 150,
-              "regular": 1000
-            }
-          },
           {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 10,
-            "max": 1000,
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 100,
+            "max": 10000,
             "conditionalMax": {
-              "limited": 150,
-              "regular": 1000
+              "limited": 1500,
+              "regular": 10000
+            }
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 100,
+            "max": 10000,
+            "conditionalMax": {
+              "limited": 1500,
+              "regular": 10000
             }
           },
           {
@@ -226,16 +230,19 @@
             "value": "",
             "options": [
               {
+                "id": "paperBlueBack",
                 "name": "Blue-back",
                 "price": 0
               },
               {
+                "id": "paperCityLight",
                 "name": "City-light",
-                "price": 20
+                "price": 25
               },
               {
+                "id": "paperPosterPaper",
                 "name": "Poster paper",
-                "price": 102
+                "price": 125
               }
             ]
           },
@@ -246,20 +253,24 @@
             "value": "",
             "options": [
               {
+                "id": "paperQuality720",
                 "name": "720 dpi",
                 "price": 10
               },
               {
+                "id": "paperQuality1080",
                 "name": "1080 dpi",
-                "price": 27
+                "price": 32
               },
               {
+                "id": "paperQuality1440",
                 "name": "1440 dpi",
-                "price": 40
+                "price": 48
               }
             ],
             "conditionalOptions": [
               {
+                "id": "paperQuality360",
                 "name": "360 dpi",
                 "price": 0
               }
@@ -284,25 +295,25 @@
       {
         "id": "printingBannerGrid",
         "name": "на банерній сітці",
-        "price": 84,
+        "price": 103,
         "params": [
-          {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 100,
-            "max": 1000
-          },
           {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 100,
-            "max": 1000
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 1000,
+            "max": 10000
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 1000,
+            "max": 10000
           },
           {
             "id": "bannerGridQuality",
@@ -311,15 +322,8 @@
             "value": "",
             "options": [
               {
+                "id": "bannerGridQuality720",
                 "name": "720 dpi",
-                "price": 0
-              },
-              {
-                "name": "1080 dpi",
-                "price": 0
-              },
-              {
-                "name": "1440 dpi",
                 "price": 0
               }
             ]
@@ -346,22 +350,22 @@
         "price": 420,
         "params": [
           {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 100,
-            "max": 1000
-          },
-          {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 100,
-            "max": 1000
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 1000,
+            "max": 10000
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 1000,
+            "max": 10000
           },
           {
             "id": "tentQuality",
@@ -370,6 +374,7 @@
             "value": "",
             "options": [
               {
+                "id": "tentQuality1080",
                 "name": "1080 dpi",
                 "price": 0
               }
@@ -381,25 +386,25 @@
       {
         "id": "printingFilm",
         "name": "на плівці",
-        "price": 63,
+        "price": 78,
         "params": [
-          {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 5,
-            "max": 1000
-          },
           {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 5,
-            "max": 1000
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 50,
+            "max": 10000
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 50,
+            "max": 10000
           },
           {
             "id": "filmMaterial",
@@ -413,19 +418,19 @@
               },
               {
                 "name": "Матова",
-                "price": 28.4
+                "price": 36
               },
               {
                 "name": "Прозора",
-                "price": 28.4
+                "price": 36
               },
               {
                 "name": "Black out",
-                "price": 70
+                "price": 83
               },
               {
                 "name": "One way",
-                "price": 61.7
+                "price": 73
               },
               {
                 "name": "Автомобільна",
@@ -449,11 +454,11 @@
               },
               {
                 "name": "1080 dpi",
-                "price": 15
+                "price": 21
               },
               {
                 "name": "1440 dpi",
-                "price": 33
+                "price": 41
               }
             ]
           }
@@ -503,22 +508,22 @@
         "price": 300,
         "params": [
           {
-            "id": "height",
-            "width": "half",
-            "type": "number",
-            "label": "Висота (см)",
-            "placeholder": "Висота (см)",
-            "min": 100,
-            "max": 1000
-          },
-          {
             "id": "width",
             "width": "half",
             "type": "number",
-            "label": "Ширина (см)",
-            "placeholder": "Ширина (см)",
-            "min": 100,
-            "max": 1000
+            "label": "Ширина (мм)",
+            "placeholder": "Ширина (мм)",
+            "min": 1000,
+            "max": 10000
+          },
+          {
+            "id": "height",
+            "width": "half",
+            "type": "number",
+            "label": "Висота (мм)",
+            "placeholder": "Висота (мм)",
+            "min": 1000,
+            "max": 10000
           },
           {
             "id": "wallpaperMaterial",
@@ -559,15 +564,14 @@
   {
     "id": "letters",
     "name": "Об’ємні букви",
-    "price": 20,
     "params": [
       {
         "id": "letterHeight",
         "type": "number",
-        "label": "Висота букви (см)",
+        "label": "Висота букви (мм)",
         "placeholder": "-",
-        "min": 15,
-        "max": 100
+        "min": 150,
+        "max": 1000
       },
       {
         "id": "lettersFontFamily",
@@ -611,42 +615,80 @@
         "value": "",
         "options": [
           {
+            "id": "letterMaterialPvc",
             "name": "лице пвх, борт з пвх",
-            "price": 0
+            "price": 20
           },
           {
+            "id": "letterMaterialAcrylicPvc",
             "name": "лице акрил, борт пвх",
-            "price": 5
+            "price": 25
           },
           {
+            "id": "letterMaterialAcrylic",
             "name": "лице акрил, борт акрил",
-            "price": 30
-          }
-        ]
-      },
-      {
-        "id": "lettersBackground",
-        "type": "select",
-        "label": "Підсвічування",
-        "value": "",
-        "options": [
-          {
-            "name": "без світла",
-            "price": 0
-          },
-          {
-            "name": "контражурна підсвітка",
-            "price": 2
+            "price": 60
           }
         ],
-        "conditionalOptions": [
+        "conditionalParams": [
           {
-            "name": "лицьова світлова панель",
-            "price": 1
+            "id": "lettersBackground1",
+            "type": "select",
+            "label": "Підсвічування",
+            "forOptionId": "letterMaterialPvc",
+            "value": "",
+            "options": [
+              {
+                "name": "без світла",
+                "price": 0
+              },
+              {
+                "name": "контражурна підсвітка",
+                "price": 10
+              }
+            ]
           },
           {
-            "name": "світло: лице + контражур",
-            "price": 3
+            "id": "lettersBackground2",
+            "type": "select",
+            "label": "Підсвічування",
+            "forOptionId": "letterMaterialAcrylicPvc",
+            "value": "",
+            "options": [
+              {
+                "name": "без світла",
+                "price": 0
+              },
+              {
+                "name": "лицьова світлова панель",
+                "price": 5
+              },
+              {
+                "name": "світло: лице + контражур",
+                "price": 25
+              }
+            ]
+          },
+          {
+            "id": "lettersBackground3",
+            "type": "select",
+            "label": "Підсвічування",
+            "forOptionId": "letterMaterialAcrylic",
+            "value": "",
+            "options": [
+              {
+                "name": "світло: лице + борт",
+                "price": 0
+              },
+              {
+                "name": "контражурна підсвітка",
+                "price": 20
+              },
+              {
+                "name": "світло: лице + контражур",
+                "price": -10
+              }
+            ]
           }
         ]
       }
@@ -656,25 +698,24 @@
   {
     "id": "lightbox",
     "name": "Лайтбокс",
-    "price": 200,
     "params": [
-      {
-        "id": "height",
-        "width": "half",
-        "type": "number",
-        "label": "Висота (см)",
-        "placeholder": "Висота (см)",
-        "min": 100,
-        "max": 1000
-      },
       {
         "id": "width",
         "width": "half",
         "type": "number",
-        "label": "Ширина (см)",
-        "placeholder": "Ширина (см)",
-        "min": 100,
-        "max": 1000
+        "label": "Ширина (мм)",
+        "placeholder": "Ширина (мм)",
+        "min": 1000,
+        "max": 10000
+      },
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (мм)",
+        "placeholder": "Висота (мм)",
+        "min": 1000,
+        "max": 10000
       },
       {
         "id": "lightboxMaterial",
@@ -683,44 +724,84 @@
         "value": "",
         "options": [
           {
-            "name": "полікарбонатний",
-            "price": 0
-          },
-          {
+            "id": "lightboxMaterialBanner",
             "name": "банерний",
-            "price": 9
+            "price": 3800
           },
           {
+            "id": "lightboxMaterialAcrylic",
             "name": "акриловий",
-            "price": 18
+            "price": 4500
           },
           {
+            "id": "lightboxMaterialComposite",
             "name": "композитний",
-            "price": 27
+            "price": 4800
           }
-        ]
-      },
-      {
-        "id": "lightboxType",
-        "type": "select",
-        "label": "Тип",
-        "value": "",
-        "options": [
+        ],
+        "conditionalParams": [
           {
-            "name": "світловий лайтбокс",
-            "price": 0
+            "id": "lightboxType1",
+            "type": "select",
+            "forOptionId": "lightboxMaterialBanner",
+            "label": "Тип",
+            "value": "",
+            "options": [
+              {
+                "name": "світловий лайтбокс",
+                "price": 0
+              },
+              {
+                "name": "двосторонній лайтбокс",
+                "price": 400
+              },
+              {
+                "name": "світловий лайтбокс + контражурна підсвітка",
+                "price": 400
+              }
+            ]
           },
           {
-            "name": "двосторонній лайтбокс",
-            "price": 23
+            "id": "lightboxType2",
+            "type": "select",
+            "forOptionId": "lightboxMaterialAcrylic",
+            "label": "Тип",
+            "value": "",
+            "options": [
+              {
+                "name": "світловий лайтбокс",
+                "price": 0
+              },
+              {
+                "name": "двосторонній лайтбокс",
+                "price": 1100
+              },
+              {
+                "name": "світловий лайтбокс + контражурна підсвітка",
+                "price": 1100
+              }
+            ]
           },
           {
-            "name": "контражурна підсвітка",
-            "price": 26
-          },
-          {
-            "name": "світловий лайтбокс + контражурна підсвітка",
-            "price": 38
+            "id": "lightboxType3",
+            "type": "select",
+            "forOptionId": "lightboxMaterialComposite",
+            "label": "Тип",
+            "value": "",
+            "options": [
+              {
+                "name": "світловий лайтбокс",
+                "price": 0
+              },
+              {
+                "name": "двосторонній лайтбокс",
+                "price": 1000
+              },
+              {
+                "name": "світловий лайтбокс + контражурна підсвітка",
+                "price": 1000
+              }
+            ]
           }
         ]
       }
@@ -730,25 +811,24 @@
   {
     "id": "numberPlate",
     "name": "Номерна табличка",
-    "price": 300,
     "params": [
-      {
-        "id": "height",
-        "width": "half",
-        "type": "number",
-        "label": "Висота (см)",
-        "placeholder": "Висота (см)",
-        "min": 5,
-        "max": 1000
-      },
       {
         "id": "width",
         "width": "half",
         "type": "number",
-        "label": "Ширина (см)",
-        "placeholder": "Ширина (см)",
-        "min": 5,
-        "max": 1000
+        "label": "Ширина (мм)",
+        "placeholder": "Ширина (мм)",
+        "min": 50,
+        "max": 10000
+      },
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (мм)",
+        "placeholder": "Висота (мм)",
+        "min": 50,
+        "max": 10000
       },
       {
         "id": "numberPlateMaterial",
@@ -757,23 +837,26 @@
         "value": "",
         "options": [
           {
+            "id": "numberPlateMaterialPVC",
             "name": "ПВХ",
-            "price": 0
+            "price": 1105
           },
           {
+            "id": "numberPlateMaterialComposite",
             "name": "Композит",
-            "price": 11
+            "price": 1430
           },
           {
+            "id": "numberPlateMaterialLightbox",
             "name": "Лайтбокс",
-            "price": 22
+            "price": 3000
           }
         ],
         "conditionalParams": [
           {
             "id": "numberPlateBacklight",
             "type": "select",
-            "forParam": "Лайтбокс",
+            "forOptionId": "numberPlateMaterialLightbox",
             "label": "Підсвічування",
             "value": "",
             "options": [
@@ -783,14 +866,14 @@
               },
               {
                 "name": "З підсвічуванням",
-                "price": 14
+                "price": 1500
               }
             ]
           },
           {
-            "id": "numberPlateFilmGluing",
+            "id": "numberPlateFilmGluing1",
             "type": "select",
-            "forParam": "ПВХ",
+            "forOptionId": "numberPlateMaterialPVC",
             "label": "Поклейка плівки",
             "value": "",
             "options": [
@@ -800,14 +883,14 @@
               },
               {
                 "name": "Друк",
-                "price": 12
+                "price": 0
               }
             ]
           },
           {
-            "id": "numberPlateFilmGluing",
+            "id": "numberPlateFilmGluing2",
             "type": "select",
-            "forParam": "Композит",
+            "forOptionId": "numberPlateMaterialComposite",
             "label": "Поклейка плівки",
             "value": "",
             "options": [
@@ -817,7 +900,7 @@
               },
               {
                 "name": "Друк",
-                "price": 12
+                "price": 0
               }
             ]
           }
@@ -829,25 +912,32 @@
   {
     "id": "stand",
     "name": "Стенд",
-    "price": 400,
     "params": [
-      {
-        "id": "height",
-        "width": "half",
-        "type": "number",
-        "label": "Висота (см)",
-        "placeholder": "Висота (см)",
-        "min": 25,
-        "max": 200
-      },
       {
         "id": "width",
         "width": "half",
         "type": "number",
-        "label": "Ширина (см)",
-        "placeholder": "Ширина (см)",
-        "min": 25,
-        "max": 200
+        "label": "Ширина (мм)",
+        "placeholder": "Ширина (мм)",
+        "min": 250,
+        "max": 3000,
+        "conditionalMax": {
+          "limited": 1500,
+          "regular": 3000
+        }
+      },
+      {
+        "id": "height",
+        "width": "half",
+        "type": "number",
+        "label": "Висота (мм)",
+        "placeholder": "Висота (мм)",
+        "min": 250,
+        "max": 3000,
+        "conditionalMax": {
+          "limited": 1500,
+          "regular": 3000
+        }
       },
       {
         "id": "standMaterial",
@@ -857,11 +947,13 @@
         "options": [
           {
             "name": "ПВХ",
-            "price": 0
-          },
+            "price": 290
+          }
+        ],
+        "conditionalOptions": [
           {
             "name": "Композит",
-            "price": 11
+            "price": 490
           }
         ]
       },
@@ -881,15 +973,15 @@
             "options": [
               {
                 "name": "A3",
-                "price": 0
+                "price": 70
               },
               {
                 "name": "A4",
-                "price": 4
+                "price": 50
               },
               {
                 "name": "A5",
-                "price": 8
+                "price": 30
               }
             ]
           }
@@ -907,11 +999,11 @@
           },
           {
             "name": "біла чи кольорова плівка",
-            "price": 18
+            "price": 205
           },
           {
             "name": "повнокольоровий друк",
-            "price": 36
+            "price": 205
           }
         ]
       }
@@ -921,25 +1013,27 @@
   {
     "id": "stender",
     "name": "Штендер",
-    "price": 100,
+    "price": 111,
     "params": [
       {
-        "id": "height",
-        "width": "half",
-        "type": "number",
-        "label": "Висота (см)",
-        "placeholder": "Висота (см)",
-        "min": 100,
-        "max": 1000
-      },
-      {
-        "id": "width",
-        "width": "half",
-        "type": "number",
-        "label": "Ширина (см)",
-        "placeholder": "Ширина (см)",
-        "min": 100,
-        "max": 1000
+        "id": "stenderSize",
+        "type": "select",
+        "label": "Розмір штендера",
+        "value": "",
+        "options": [
+          {
+            "name": "60 × 90 см",
+            "price": 1070
+          },
+          {
+            "name": "70 × 100 см",
+            "price": 1220
+          },
+          {
+            "name": "80 × 110 см",
+            "price": 1420
+          }
+        ]
       },
       {
         "id": "stenderType",
@@ -952,33 +1046,11 @@
             "price": 0
           },
           {
-            "name": "арочний",
-            "price": 21
-          },
-          {
             "name": "фігурний",
-            "price": 42
+            "price": 850
           }
         ]
       },
-      {
-        "id": "stenderMaterial",
-        "type": "select",
-        "label": "Матеріал",
-        "value": "",
-        "options": [
-          {
-            "name": "ПВХ",
-            "price": 0
-          },
-          {
-            "name": "Композит",
-            "price": 11
-          }
-        ]
-      }
-    ],
-    "additionals": [
       {
         "id": "stenderSides",
         "type": "select",
@@ -991,10 +1063,11 @@
           },
           {
             "name": "Двосторонній",
-            "price": 10
+            "price": 180
           }
         ]
       }
-    ]
+    ],
+    "additionals": []
   }
 ]
