@@ -17,7 +17,7 @@
   const URGENT_PROD_4 = 'urgentProd4';
 
   onMount(async () => {
-    const responce = await fetch('/calc.json');
+    const responce = await fetch('calc.json');
     services = await responce.json();
   });
 
