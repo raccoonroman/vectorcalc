@@ -1,7 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var path = require('path');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
@@ -17,50 +16,11 @@ var htmlmin = require('gulp-htmlmin');
 var del = require('del');
 var posthtml = require('gulp-posthtml');
 var include = require('posthtml-include');
-var webpack = require('webpack-stream');
+var webpackStream = require('webpack-stream');
+var webpackConfig = require('./webpack.config.js');
 
 var input = 'src/';
 var output = 'build/';
-
-var getWebpackConfig = function(mode) {
-  return {
-    mode: mode,
-    output: {
-      filename: 'app.js',
-    },
-    resolve: {
-      alias: {
-        svelte: path.resolve('node_modules', 'svelte'),
-      },
-      extensions: ['.mjs', '.js', '.svelte'],
-      mainFields: ['svelte', 'browser', 'module', 'main'],
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(html|svelte)$/,
-          exclude: /node_modules/,
-          use: 'svelte-loader',
-        },
-        {
-          test: /\.(js)$/,
-          exclude: /(node_modules)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-        },
-        {
-          test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
-        },
-      ]
-    },
-  };
-}
-
 
 gulp.task('sprite', function () {
   return gulp.src(input + 'img/sprite/*.svg')
@@ -120,15 +80,9 @@ gulp.task('html', function () {
     .pipe(gulp.dest(output));
 });
 
-gulp.task('js-prod', function () {
+gulp.task('js', function () {
   return gulp.src(input + 'js/app.js')
-    .pipe(webpack(getWebpackConfig('production')))
-    .pipe(gulp.dest(output))
-});
-
-gulp.task('js-dev', function () {
-  return gulp.src(input + 'js/app.js')
-    .pipe(webpack(getWebpackConfig('development')))
+    .pipe(webpackStream(webpackConfig))
     .pipe(gulp.dest(output))
 });
 
@@ -156,8 +110,8 @@ gulp.task('server', function () {
 
   gulp.watch(input + 'sass/**/*.scss', gulp.series('css', 'refresh'));
   gulp.watch(input + 'html/**/*.html', gulp.series('html', 'refresh'));
-  gulp.watch(input + 'js/**/*.js', gulp.series('js-dev', 'refresh'));
-  gulp.watch(input + 'js/**/*.svelte', gulp.series('js-dev', 'refresh'));
+  gulp.watch(input + 'js/**/*.js', gulp.series('js', 'refresh')); // optimize here
+  gulp.watch(input + 'js/**/*.svelte', gulp.series('js', 'refresh')); // and here
   gulp.watch(input + 'fonts/**/*.{woff,woff2}', gulp.series('copy', 'refresh'));
   gulp.watch(input + 'img/*.{gif,png,jpg,jpeg,svg}', gulp.series('copy', 'refresh'));
   gulp.watch(input + 'img/sprite/*.svg', gulp.series('sprite', 'refresh'));
@@ -174,16 +128,8 @@ gulp.task('build', gulp.series(
   'copy',
   'css',
   'sprite',
-  'js-prod',
+  'js',
   'html',
 ));
 
-gulp.task('start', gulp.series(
-  'clean',
-  'copy',
-  'css',
-  'sprite',
-  'js-dev',
-  'html',
-  'server',
-));
+gulp.task('start', gulp.series('build', 'server'));

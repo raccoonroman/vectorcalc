@@ -7,8 +7,8 @@
   "homepage": "http://raccoonroman.github.io/vectorcalc",
   "scripts": {
     "test": "stylelint \"src/sass/**/*.scss\" --syntax scss",
-    "build": "gulp build",
-    "start": "gulp start",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "start": "cross-env NODE_ENV=development gulp start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -18,6 +18,7 @@
     "autoprefixer": "9.8.0",
     "babel-loader": "8.1.0",
     "browser-sync": "^2.26.10",
+    "cross-env": "7.0.2",
     "css-loader": "3.6.0",
     "del": "5.1.0",
     "gh-pages": "3.1.0",

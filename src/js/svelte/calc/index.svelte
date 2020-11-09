@@ -11,24 +11,28 @@
   let totalPrice = 0;
   let section;
   let allParamsChosenAndValid = false;
+  let chosenParams = [];
+
+  const URGENT_PROD_24 = 'urgentProd24';
+  const URGENT_PROD_4 = 'urgentProd4';
 
   onMount(async () => {
-    const responce = await fetch('calc.json');
+    const responce = await fetch('/calc.json');
     services = await responce.json();
   });
 
-  const openPopup = (evt) => {
+  const openPopup = (evt) => { // відкрити попап
     const popupName = evt.currentTarget.dataset.openPopup;
     const popup = document.querySelector(`[data-popup=${popupName}]`);
     popup.classList.remove('popup--hidden');
   };
 
-  const closePopup = (evt) => {
+  const closePopup = (evt) => { // закрити попап
     const popup = evt.target.closest('[data-popup]')
     popup.classList.add('popup--hidden');
   };
 
-  const handleKeydown = (evt) => {
+  const handleKeydown = (evt) => { // закрити попап клавішею Escape
     if (evt.key === 'Escape') {
       const popup = document.querySelector('[data-popup]:not(.popup--hidden)');
       if (popup) {
@@ -37,46 +41,42 @@
     }
   };
 
-  const getParamByElementId = (id) => service.params.find((param) => id === param.id);
+  const getParamByElementId = (id) => service.params.find((param) => id === param.id); // шукаємо параметр послуги за айдішніком
 
-  const validateNumber = (param) => {
-    if (param.value >= param.min && param.value <= param.max) {
-      param.valid = true;
-      service = service;
-    } else {
-      param.valid = false;
-      service = service;
-    }
+  const validateNumber = (param) => { // валідація номера в інпуті
+    param.valid = param.value >= param.min && param.value <= param.max;
+    service = service;
   };
 
-  const setInputFontFamily = async (param) => {
+  const setInputFontFamily = async (param) => { // відобразити змінений шрифт в текстовому інпуті, коли в селекті вибираємо сімейство шрифта
     await tick();
     const textInput = section.querySelector('#lettersText');
     const fontFamily = param.value.name || 'Roboto';
     textInput.style.fontFamily = `${fontFamily}, ${fontGeneric[fontFamily]}`;
   };
 
-  const getParamSquare = () => {
+  const getParamSquare = () => { // вичисляємо площу вироба за шириною і висотою
     const width = getParamByElementId('width');
     const height = getParamByElementId('height');
-    return width.value * height.value  / 1000000;
+    return width.value * height.value  / 1000000; // переводимо площу в метри
   };
 
-  const getParamPerimeter = () => {
+  const getParamPerimeter = () => { // вичисляємо периметр вироба за шириною і висотою
     const width = getParamByElementId('width');
     const height = getParamByElementId('height');
-    return (width.value + height.value) * 2 / 1000;
+    return (width.value + height.value) * 2 / 1000; // переводимо периметр в метри
   };
 
 
-  const addConditionalOptionsToParamOptions = (param, position = 'afterend') => {
+  const addConditionalOptionsToParamOptions = (param, position = 'afterend') => { // додаємо нові "option" до селекту, які залежать від якихось зовнішніх умов (напр., завеликий розмір виробу). Ці "option" беруться із одного додаткового свойства "param" і копіюються в основні. Можемо додати як на початок, так і в кінець, після основних "opyion".
     const { options, conditionalOptions } = param;
+    // перевіряємо, чи я вже ці додаткові "option" в селекті, щоб не додавати зайвий раз
     const hasParamConditionalOptions = options.some((option) => (
       conditionalOptions.some(({ name }) => name === option.name)
     ));
 
     let newOptions;
-    switch (position) {
+    switch (position) { // вставляємо або на початок, або в кінець
       case 'afterend':
         newOptions = [...options, ...conditionalOptions];
         break;
@@ -89,37 +89,32 @@
     param.options = !hasParamConditionalOptions ? newOptions : options;
   };
 
-  const removeConditionalOptionsFromParamOptins = (param) => {
+  const removeConditionalOptionsFromParamOptins = (param) => { // аналогічно від ф-ції вище, але тут видаляємо неосновні "option" з селекту
     const { options, conditionalOptions } = param;
     param.options = options.filter(({ name }) => (
       !conditionalOptions.some((option) => option.name === name)
     ));
     const isParamValueFromConditionals = conditionalOptions.some((option) => option === param.value)
-    param.value = isParamValueFromConditionals ? param.options[param.options.length - 1] : param.value;
+    param.value = isParamValueFromConditionals ? param.options[param.options.length - 1] : param.value; // встановлюємо останнє значення з нових "option", щоб не було ситуації, коли в селекті стоїть "option", якого вже насправді немає.
   };
 
   // form event listeners
-  const onServiceChange = () => {
+  const onServiceChange = () => { // коли міняється тип послуги
     if (service.id === 'letters') { // відновити шрифт, коли міняється тип самої послуги
       const fontFamilyParam = getParamByElementId('lettersFontFamily');
       setInputFontFamily(fontFamilyParam);
     }
-    if (service.id === 'stand') {
+    if (service.id === 'stand') { // відразу додаємо додаткові "option" до селекту, при першому відображенні
       const materialParam = getParamByElementId('standMaterial');
       addConditionalOptionsToParamOptions(materialParam);
     }
   };
 
-  const onServiceTypeChange = () => {
-    if (service.type instanceof Object) {
-      service.price = service.type.price;
-      service.params = service.type.params;
-      service.additionals = service.type.additionals;
-    } else {
-      service.price = null;
-      service.params = null;
-      service.additionals = null;
-    }
+  const onServiceTypeChange = () => { // коди міняється поверхня для широкоформатного другу - підвантажуємо параметри
+    const { price, params, additionals } = service.type instanceof Object ? service.type : {}
+    service.price = price || null;
+    service.params = params || null;
+    service.additionals = additionals || null;
   };
 
   const onNumberFieldInput = ({ target }) => {
@@ -131,13 +126,16 @@
     }
   };
 
-  const limitMaxValueForSide = (widthParam, heightParam, currentParam) => {
+  const limitMaxValueForSide = (widthParam, heightParam, currentParam) => { //обмежити максимальне значення для іншої сторони, якщо в поточної сторони встановили завелике значення.
+    const setMaxValueForParam = (targetParam) => {
+      const { limited, regular } = targetParam.conditionalMax;
+      targetParam.max = currentParam.value > currentParam.conditionalMax.limited ? limited : regular;
+    };
+
     if (currentParam.id === 'width') {
-      const { limited, regular } = heightParam.conditionalMax;
-      heightParam.max = currentParam.value > currentParam.conditionalMax.limited ? limited : regular;
+      setMaxValueForParam(heightParam);
     } else if (currentParam.id === 'height') {
-      const { limited, regular } = widthParam.conditionalMax;
-      widthParam.max = currentParam.value > currentParam.conditionalMax.limited ? limited : regular;
+      setMaxValueForParam(widthParam);
     }
   };
 
@@ -154,20 +152,18 @@
     }
 
     switch (service.id) {
-      case 'stand': {
+      case 'stand': { // якщо послуга "Стенд"
         const pocketsCountParam = getParamByElementId('standPockets');
         const materialParam = getParamByElementId('standMaterial');
 
-        limitMaxValueForSide(widthParam, heightParam, param);
+        limitMaxValueForSide(widthParam, heightParam, param); // обмежили макс. значення для однієї зі сторін
 
-        if (param.id === 'width' || param.id === 'height') { // коли змінилася площа стенду - перерахувати кількість кишень
-          if (pocketsCountParam.subparams) {
-            const pocketsSizeParam = pocketsCountParam.subparams.find(({ id }) => id === 'standPocketsSize');
-            setPocketsCountValue(pocketsCountParam, pocketsSizeParam);
-          }
+        if (['width', 'height'].includes(param.id) && pocketsCountParam.subparams) { // коли змінилася площа стенду - перерахувати кількість кишень
+          const pocketsSizeParam = pocketsCountParam.subparams.find(({ id }) => id === 'standPocketsSize');
+          setPocketsCountValue(pocketsCountParam, pocketsSizeParam);
         }
 
-        if (widthParam.value > 1500 || heightParam.value > 1500) {
+        if (widthParam.value > 1500 || heightParam.value > 1500) { //якщо одна зі сторін більша ніж 1.5м - відобразити додаткові "option" для селекту матеріалів
           removeConditionalOptionsFromParamOptins(materialParam);
         } else {
           addConditionalOptionsToParamOptions(materialParam);
@@ -175,14 +171,14 @@
         break;
       }
       case 'printing': {
-        if (service.type.id === 'printingPaper') {
-          limitMaxValueForSide(widthParam, heightParam, param);
+        if (service.type.id === 'printingPaper') { // якщо широкоформатний друк на папері
+          limitMaxValueForSide(widthParam, heightParam, param); // обмежити максимальне значення однієї зі сторін
         }
 
-        if (service.type.id === 'printingBanner') {
+        if (service.type.id === 'printingBanner') { // якщо широкоформатний друк на банері
           const qualityParam = getParamByElementId('bannerQuality');
 
-          if (widthParam.value < 1600 && heightParam.value < 1600) { // якщо ширина або висота більше 160см - 1400dpi недоступно
+          if (widthParam.value < 1600 && heightParam.value < 1600) { // якщо ширина або висота більше 1.6м - 1400dpi недоступно
             addConditionalOptionsToParamOptions(qualityParam);
           } else {
             removeConditionalOptionsFromParamOptins(qualityParam);
@@ -216,40 +212,42 @@
       case 'letterMaterial':
       case 'lightboxMaterial': // при зміні матеріалу - відобразити дод. поля
         param.subparams = param.conditionalParams.filter(({ forOptionId }) => forOptionId === param.value.id);
+        service = service;
         break;
       default:
         break;
     }
   };
 
-  const setPocketsCountValue = (param, subparam) => {
-    const paramSquare = getParamSquare();
-    const { width, height } = paperFormats.find(({ name }) => name === subparam.value.name);
-    const maxPocketsCount = Math.floor(paramSquare / (width * height * 1.2));
-    param.value = maxPocketsCount < param.value ? maxPocketsCount : param.value;
-  };
-
-  const onSubparamSelectChange = (param, subparam) => {
-    if (param.id === 'standPockets') {
-      if (subparam.value.name) {
-        setPocketsCountValue(param, subparam);
-      }
+  const setPocketsCountValue = (param, subparam) => { // встановити кількість кишень для стенду, якщо введено більше ніж допустимо
+    if (subparam.value.name) {
+      const paramSquare = getParamSquare();
+      const { width, height } = paperFormats.find(({ name }) => name === subparam.value.name);
+      const maxPocketsCount = Math.floor(paramSquare / (width * height * 1.2));
+      param.value = maxPocketsCount < param.value ? maxPocketsCount : param.value;
+      service = service;
     }
   };
 
-  const onToggleChange = (param) => {
+  const onSubparamSelectChange = (param, subparam) => {
+    if (param.id === 'standPockets') { // коли змінили формат кишень - обновити максимальну кількість
+      setPocketsCountValue(param, subparam);
+    }
+  };
+
+  const onToggleChange = (param) => { // коли змінили терміновий друк - вимкнути інший перемикач термінового друку, так як одночасно доступний може бути тільки один
     const allParams = [...service.params, ...service.additionals];
 
-    if (param.id === 'urgentProd24' && param.checked) {
-      const urgentProd4 = allParams.find(({ id }) => id === 'urgentProd4');
+    if (param.id === URGENT_PROD_24 && param.checked) {
+      const urgentProd4 = allParams.find(({ id }) => id === URGENT_PROD_4);
       if (urgentProd4) {
         urgentProd4.checked = false;
         service = service;
       }
     }
 
-    if (param.id === 'urgentProd4' && param.checked) {
-      const urgentProd24 = allParams.find(({ id }) => id === 'urgentProd24');
+    if (param.id === URGENT_PROD_4 && param.checked) {
+      const urgentProd24 = allParams.find(({ id }) => id === URGENT_PROD_24);
       if (urgentProd24) {
         urgentProd24.checked = false;
         service = service;
@@ -258,13 +256,38 @@
   };
   // end form event listeners
 
-  const onSummaryBtnClick = (evt) => {
-    openPopup(evt);
+  const getAllParamValues = (service) => { // збираємо всі дані, щоб відправити на бек.
+    const { params, additionals } = service;
+    const allParams = [...params, ...additionals];
+
+    const iter = (params) => {
+      return params.map((param) => {
+        const { type, label, value, checked, subparams } = param;
+
+        if (subparams) {
+          return [[label, value.name || value], iter(subparams).flat(2)];
+        }
+
+        if (type === 'checkbox' || type === 'toggle') {
+          return checked ? [[label, checked]] : [];
+        }
+
+        return [[label, value.name || value]];
+      });
+    };
+
+    return iter(allParams).flat();
   };
 
-  const roundPrice = (price) => Math.round(price);
+  const onSummaryBtnClick = (evt) => {
+    openPopup(evt);
 
-  const calcLuversPrice = () => {
+    const paramValues = getAllParamValues(service);
+
+    chosenParams = paramValues;
+  };
+
+  const calcLuversPrice = () => { // рахуємо ціну люверсів за формулою
     const widthParam = getParamByElementId('width');
     const heightParam = getParamByElementId('height');
     const luversParam = getParamByElementId('bannerLuvers');
@@ -273,6 +296,8 @@
     const sidesNumber = 4;
     const width = widthParam.value / 1000;
     const height = heightParam.value / 1000;
+
+    if (!luversParam) return 0;
 
     switch (luversParam.value.id) {
       case 'luversOption1': // "Без люверсовки"
@@ -295,16 +320,20 @@
     }
   };
 
-  const calcSolderingPrice = () => {
+  const calcSolderingPrice = () => { // рахуємо ціну спайки за формулою
     const solderingParam = getParamByElementId('bannerSoldering');
+    if (!solderingParam) return 0;
+
     const perimeter = getParamPerimeter();
     return perimeter * solderingParam.value.price;
   };
 
-  const calcPipePocketPrice = () => {
+  const calcPipePocketPrice = () => { // рахуємо ціну карману під трубу за формулою
     const widthParam = getParamByElementId('width');
     const heightParam = getParamByElementId('height');
     const pipePocketParam = getParamByElementId('bannerPipePocket');
+
+    if (!pipePocketParam) return 0;
 
     switch (pipePocketParam.value.id) {
       case 'pipePocketOption1': // "Без карману"
@@ -326,7 +355,7 @@
     }
   };
 
-  const calcPocketsPrice = () => {
+  const calcPocketsPrice = () => { // рахуємо ціну для карманів стенду
     const pocketsCountParam = getParamByElementId('standPockets');
 
     if (pocketsCountParam.value > 0 && pocketsCountParam.subparams) {
@@ -338,12 +367,12 @@
   };
 
   const calcParamSelectsPrice = (params = [], size = 1) => (
-    params
+    params // рахуємо ціну всіх параметрів (селектів)
       .filter((param) => param.type === 'select')
       .reduce((acc, param) => acc + (param.value.price * size || 0), 0)
   );
 
-  const isAllParamsChosenAndValid = (params) => {
+  const isAllParamsChosenAndValid = (params) => { // перевіряємо, чи всі поля валідні
     const selectsValid = params.filter(({ type }) => type === 'select').every(({ value }) => value.name);
     const textsValid = params.filter(({ type }) => type === 'text').every(({ value }) => value.trim().length);
     const numbersValid = params.filter(({ type }) => type === 'number').every(({ valid }) => valid);
@@ -363,7 +392,7 @@
     const urgentParam = additionals.find((i) => (i.id === 'urgentProd24' || i.id === 'urgentProd4') && i.checked);
     const urgentCoefficient = urgentParam ? urgentParam.coefficient : 1;
 
-    totalPrice = roundPrice((price * square + paramsSelectsPrice) * urgentCoefficient);
+    totalPrice = Math.round((price * square + paramsSelectsPrice) * urgentCoefficient);
 
     if (service.type.id === 'printingFilm') {
       const additionalCheckboxesPrice = additionals
@@ -375,7 +404,7 @@
           return acc + (calcPrice || 0);
         }, 0);
 
-      totalPrice = roundPrice((price * square + paramsSelectsPrice + additionalCheckboxesPrice) * urgentCoefficient);
+      totalPrice = Math.round((price * square + paramsSelectsPrice + additionalCheckboxesPrice) * urgentCoefficient);
     }
 
     if (service.type.id === 'printingBanner') {
@@ -385,7 +414,7 @@
 
       const bannerParamsPrice = paramsSelectsPrice + calcLuversPrice() + calcSolderingPrice() + calcPipePocketPrice();
 
-      totalPrice = roundPrice((price * square + bannerParamsPrice) * urgentCoefficient);
+      totalPrice = Math.round((price * square + bannerParamsPrice) * urgentCoefficient);
     }
   }
 
@@ -400,7 +429,7 @@
     const paramsSelectsPrice = calcParamSelectsPrice(service.params, letterHeight);
     const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, letterHeight);
 
-    totalPrice = roundPrice((paramsSelectsPrice + materialSubparamsPrice) * lettersTextLength);
+    totalPrice = Math.round((paramsSelectsPrice + materialSubparamsPrice) * lettersTextLength);
   }
 
   $: if (service.id === 'lightbox') {
@@ -408,7 +437,7 @@
     const materialParam = getParamByElementId('lightboxMaterial');
     const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, square);
 
-    totalPrice = roundPrice(materialParam.value.price + materialSubparamsPrice);
+    totalPrice = Math.round(materialParam.value.price + materialSubparamsPrice);
   }
 
   $: if (service.id === 'numberPlate') {
@@ -417,20 +446,20 @@
     const paramsSelectsPrice = calcParamSelectsPrice(service.params, square);
     const materialSubparamsPrice = calcParamSelectsPrice(materialParam.subparams, square);
 
-    totalPrice = roundPrice(paramsSelectsPrice + materialSubparamsPrice);
+    totalPrice = Math.round(paramsSelectsPrice + materialSubparamsPrice);
   }
 
   $: if (service.id === 'stand') {
     const square = getParamSquare();
     const paramsSelectsPrice = calcParamSelectsPrice(service.params, square);
 
-    totalPrice = roundPrice(paramsSelectsPrice + calcPocketsPrice());
+    totalPrice = Math.round(paramsSelectsPrice + calcPocketsPrice());
   }
 
   $: if (service.id === 'stender') {
     const paramsSelectsPrice = calcParamSelectsPrice(service.params);
 
-    totalPrice = roundPrice(paramsSelectsPrice);
+    totalPrice = Math.round(paramsSelectsPrice);
   }
 
   $: additionalsWithInfo = service.additionals && service.additionals.filter(({ info }) => info);
@@ -553,6 +582,18 @@
         <use href="img/sprite.svg#advertising-icon-2"></use>
       </svg>
       <h2 class="popup-calc__title">Уточнення ціни</h2>
+      <div class="params">
+        <h3>Послуга: {service.name}</h3>
+        <table style="border-collapse: collapse;">
+          {#each chosenParams as [label, value]}
+            <tr>
+              <th style="border: 1px solid #CCC;">{label}</th>
+              <td style="border: 1px solid #CCC;">{value}</td>
+            </tr>
+          {/each}
+        </table>
+        {totalPrice}
+      </div>
       <p class="popup-calc__text">Введіть будь-ласка особисті дані для уточнення ціни замовлення.</p>
       <form class="popup-calc__form" method="post" action="https://echo.htmlacademy.ru" target="_blank">
         <ul class="popup-calc__form-list">

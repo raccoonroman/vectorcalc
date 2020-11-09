@@ -13,10 +13,6 @@ import './components/product-page';
 import './components/delivery-payment';
 import Calc from './svelte/calc';
 
-const calc = new Calc({
-	target: document.getElementById('calc-main'),
-});
+new Calc({ target: document.getElementById('calc-main') });
 
-// window.app = app;
-// export default app;
 
